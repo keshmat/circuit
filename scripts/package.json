@@ -1,0 +1,35 @@
+{
+  "name": "keshmat-chess-circuit-database",
+  "version": "1.0.0",
+  "description": "Tool for analyzing chess tournament results from the Keshmat Chess Circuit",
+  "main": "circuit.js",
+  "bin": {
+    "circuit": "./circuit.js"
+  },
+  "scripts": {
+    "setup": "yarn install",
+    "process": "node circuit.js process",
+    "leaderboard": "node circuit.js leaderboard",
+    "rating-eligibility": "node circuit.js rating-progress",
+    "performance": "node circuit.js performance"
+  },
+  "keywords": [
+    "chess",
+    "tournament",
+    "database",
+    "crosstable",
+    "leaderboard"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
