@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Reports">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Reports</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Leaderboard</h2>
+          <p>
+            View the complete circuit leaderboard with all players and their
+            points.
+          </p>
+          <div class="card-actions justify-end">
+            <a href="/reports/leaderboard" class="btn btn-primary"
+              >View Leaderboard</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Performance Ratings</h2>
+          <p>
+            See detailed performance ratings for all players across tournaments.
+          </p>
+          <div class="card-actions justify-end">
+            <a href="/reports/ratings" class="btn btn-primary">View Ratings</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Rating Eligibility</h2>
+          <p>
+            Check which players are eligible for official ratings based on their
+            performance.
+          </p>
+          <div class="card-actions justify-end">
+            <a href="/reports/eligibility" class="btn btn-primary"
+              >View Eligibility</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+

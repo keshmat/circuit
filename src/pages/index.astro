@@ -1,11 +1,72 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Welcome from "../components/Welcome.astro";
+import { getDb, type Player } from "../lib/db";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const db = await getDb();
+const records = await db.all<Player[]>(`
+  SELECT name, total_points as points, tournaments_played
+  FROM circuit_leaderboard
+  ORDER BY total_points DESC
+  LIMIT 20
+`);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home">
+  <main class="container mx-auto px-4 py-8">
+    <Welcome />
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Top 20 Players</h2>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Points</th>
+              <th>Tournaments Played</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              records.map((player, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{player.name}</td>
+                  <td>{player.points}</td>
+                  <td>{player.tournaments_played}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Tournaments</h2>
+          <p>View results and standings from all tournaments in the circuit.</p>
+          <div class="card-actions justify-end">
+            <a href="/tournaments" class="btn btn-primary">View Tournaments</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Reports</h2>
+          <p>
+            Access detailed reports including performance ratings and
+            eligibility.
+          </p>
+          <div class="card-actions justify-end">
+            <a href="/reports" class="btn btn-primary">View Reports</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

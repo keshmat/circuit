@@ -1,0 +1,51 @@
+---
+export const lang = "ts";
+
+import type { TournamentResult } from "../lib/db";
+
+interface Props {
+  records: TournamentResult[];
+}
+
+const { records } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="table table-zebra w-full">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Points</th>
+        <th>Performance</th>
+        <th>Games Played</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Draws</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        records.map((player, index) => {
+          // Format the performance rating
+          const performanceRating = player.performance
+            ? parseInt(player.performance)
+            : "N/A";
+
+          return (
+            <tr>
+              <td>{index + 1}</td>
+              <td>{player.name}</td>
+              <td>{player.points}</td>
+              <td>{performanceRating}</td>
+              <td>{player.games_played}</td>
+              <td>{player.wins}</td>
+              <td>{player.losses}</td>
+              <td>{player.draws}</td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+</div>

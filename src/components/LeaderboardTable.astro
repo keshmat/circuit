@@ -1,0 +1,34 @@
+---
+import type { Player } from "../lib/db";
+
+interface Props {
+  records: Player[];
+}
+
+const { records } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="table table-zebra w-full">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Points</th>
+        <th>Tournaments Played</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        records.map((player, index) => (
+          <tr>
+            <td>{index + 1}</td>
+            <td>{player.name}</td>
+            <td>{player.points}</td>
+            <td>{player.tournaments_played}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

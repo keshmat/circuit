@@ -1,5 +1,13 @@
 ---
 import "../styles/global.css";
+import keshmatLogo from "../assets/keshmat-logo.png";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const isIndexPage = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -9,10 +17,81 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Keshmat's Chess Circuit 2024-2025</title>
+    <title>
+      {title} - Keshmat Chess Circuit
+    </title>
   </head>
   <body>
-    <slot />
+    <div class="min-h-screen bg-base-100">
+      <div class="navbar w-full px-4">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"></path>
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+            >
+              <li><a href="/">Home</a></li>
+              <li><a href="/tournaments">Tournaments</a></li>
+              <li><a href="/reports">Reports</a></li>
+            </ul>
+          </div>
+          {
+            !isIndexPage && (
+              <>
+                <img src={keshmatLogo.src} alt="Keshmat Logo" class="w-16" />
+                <a href="/" class="btn btn-ghost text-xl">
+                  Keshmat Chess Circuit
+                </a>
+              </>
+            )
+          }
+        </div>
+        <div class="navbar-end hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="/">Home</a></li>
+            <li>
+              <details>
+                <summary>Tournaments</summary>
+                <ul class="p-2 bg-base-200 rounded-t-none z-50">
+                  <li><a href="/tournaments/january">January</a></li>
+                  <li><a href="/tournaments/february">February</a></li>
+                  <li><a href="/tournaments/march">March</a></li>
+                  <li><a href="/tournaments/july">July</a></li>
+                  <li><a href="/tournaments/august">August</a></li>
+                  <li><a href="/tournaments/december">December</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>Reports</summary>
+                <ul class="p-2 bg-base-200 rounded-t-none z-50 right-0">
+                  <li><a href="/reports/leaderboard">Leaderboard</a></li>
+                  <li><a href="/reports/ratings">Performance Ratings</a></li>
+                  <li><a href="/reports/eligibility">Rating Eligibility</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <slot />
+    </div>
   </body>
 </html>
 
@@ -22,5 +101,11 @@ import "../styles/global.css";
     margin: 0;
     width: 100%;
     height: 100%;
+  }
+
+  details[open] > ul {
+    position: absolute;
+    right: 0;
+    min-width: 200px;
   }
 </style>

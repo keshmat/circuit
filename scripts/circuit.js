@@ -8,6 +8,7 @@ const { processChessTournaments } = require('./lib/chess-db');
 const { generateLeaderboard } = require('./lib/generate-leaderboard');
 const { generateRatingProgressReport } = require('./lib/generate-rating-report');
 const { generatePerformanceReport } = require('./lib/generate-performance-report');
+const { inspectTournament } = require('./lib/inspect-tournament');
 
 // Create CLI program
 const program = new Command();
@@ -131,6 +132,25 @@ program
     }
   });
 
+// Inspect command - Inspect raw data for a specific tournament
+program
+  .command('inspect')
+  .description('Inspect raw data for a specific tournament')
+  .argument('<tournament>', 'Tournament name or ID to inspect')
+  .option('-d, --details', 'Show detailed player performance data', false)
+  .option('-g, --games', 'Show game-by-game data', false)
+  .action(async (tournament, options) => {
+    console.log(chalk.blue(`🔍 Inspecting tournament: ${tournament}`));
+
+    try {
+      await inspectTournament(tournament, options);
+      console.log(chalk.green('✓ Inspection complete!'));
+    } catch (error) {
+      console.error(chalk.red('❌ Error:'), error.message);
+      process.exit(1);
+    }
+  });
+
 // Default command if none specified
 program
   .addHelpText('after', `
@@ -139,7 +159,9 @@ Examples:
   $ circuit import ./my_tournament_files     Import tournament files
   $ circuit leaderboard                      Generate circuit leaderboard
   $ circuit rating-progress                  Show unrated to rated player progress
-  $ circuit performance                      Generate performance ratings`);
+  $ circuit performance                      Generate performance ratings
+  $ circuit inspect "Tournament Name"        Inspect raw data for a specific tournament
+  $ circuit inspect "Tournament Name" -d     Show detailed player performance data`);
 
 // Parse command line arguments
 program.parse(process.argv);

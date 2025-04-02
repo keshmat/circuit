@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getDb, type PerformanceRating } from "../../lib/db";
+import PerformanceTable from "../../components/PerformanceTable.astro";
+
+const db = await getDb();
+const records = await db.all<PerformanceRating[]>(`
+  SELECT 
+    p.name,
+    ROUND(AVG(tr.rating)) as rating,
+    COUNT(DISTINCT g.id) as games_played,
+    COUNT(DISTINCT t.id) as tournaments,
+    pr.performance_rating as performance
+  FROM players p
+  JOIN tournament_results tr ON p.id = tr.player_id
+  JOIN tournaments t ON tr.tournament_id = t.id
+  LEFT JOIN games g ON (g.white_player_id = p.id OR g.black_player_id = p.id)
+  LEFT JOIN performance_ratings pr ON p.id = pr.player_id AND pr.tournament_id IS NULL
+  WHERE tr.rating IS NOT NULL
+  GROUP BY p.id, p.name
+  ORDER BY performance DESC
+`);
+---
+
+<Layout title="Performance Ratings">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Performance Ratings</h1>
+
+    <section class="mb-12">
+      <PerformanceTable records={records} />
+    </section>
+  </main>
+</Layout>

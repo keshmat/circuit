@@ -73,7 +73,10 @@ async function generatePerformanceReport(options = {}) {
 
     // Calculate expected score based on FIDE formula
     const expectedScore = games.reduce((sum, game) => {
-      const ratingDiff = game.player_rating - game.opponent_rating;
+      // Use 1500 as provisional rating for unrated players
+      const playerRating = game.player_rating || 1500;
+      // Cap rating difference at 400 points (FIDE standard)
+      const ratingDiff = Math.min(Math.max(playerRating - game.opponent_rating, -400), 400);
       // FIDE expected score formula (approximation)
       const expectedGameScore = 1 / (1 + Math.pow(10, -ratingDiff / 400));
       return sum + expectedGameScore;
@@ -81,35 +84,15 @@ async function generatePerformanceReport(options = {}) {
 
     const expectedScorePercentage = (expectedScore / totalGames) * 100;
 
-    // Calculate performance rating
-    // Simple formula: Opponent Avg + Rating Diff based on score percentage
+    // Calculate performance rating using the linear TPR formula
     const avgOpponentRating = games.reduce((sum, game) => sum + game.opponent_rating, 0) / totalGames;
+    const isUnrated = !games.some(game => game.player_rating);
 
-    // FIDE rating difference table approximation
-    const getPerformanceDiff = (scorePercentage) => {
-      if (scorePercentage >= 100) return 800;
-      if (scorePercentage >= 99) return 677;
-      if (scorePercentage >= 90) return 366;
-      if (scorePercentage >= 80) return 240;
-      if (scorePercentage >= 75) return 188;
-      if (scorePercentage >= 70) return 141;
-      if (scorePercentage >= 65) return 98;
-      if (scorePercentage >= 60) return 57;
-      if (scorePercentage >= 55) return 17;
-      if (scorePercentage >= 50) return 0;
-      if (scorePercentage >= 45) return -17;
-      if (scorePercentage >= 40) return -57;
-      if (scorePercentage >= 35) return -98;
-      if (scorePercentage >= 30) return -141;
-      if (scorePercentage >= 25) return -188;
-      if (scorePercentage >= 20) return -240;
-      if (scorePercentage >= 10) return -366;
-      if (scorePercentage >= 1) return -677;
-      return -800;
-    };
-
-    const performanceDiff = getPerformanceDiff(scorePercentage);
-    const performanceRating = Math.round(avgOpponentRating + performanceDiff);
+    // Linear TPR formula: TPR = Average Opponent Rating + (Score Percentage - 50) * 10
+    // For unrated players, we still use a more conservative approach
+    const performanceRating = isUnrated
+      ? Math.round(avgOpponentRating + (scorePercentage - 50) * 8) // Slightly reduced multiplier for unrated players
+      : Math.round(avgOpponentRating + (scorePercentage - 50) * 10);
 
     // Performance vs expected
     const diffFromExpected = scorePercentage - expectedScorePercentage;
@@ -182,61 +165,77 @@ async function generatePerformanceReport(options = {}) {
     for (const tournament of tournaments) {
       console.log(`\n${chalk.yellow(tournament.name)} (${tournament.date}):`);
 
-      // Get top 5 performers in this tournament
-      const topPerformers = await db.all(`
+      // Get all players in this tournament with their performance data
+      const tournamentPlayers = await db.all(`
         WITH player_games AS (
           SELECT 
             pp.player_id,
             p.name,
             COUNT(*) as games_played,
             SUM(pp.score) as total_score,
-            AVG(pp.opponent_rating) as avg_opponent_rating
+            AVG(pp.opponent_rating) as avg_opponent_rating,
+            GROUP_CONCAT(pp.player_rating) as player_ratings
           FROM player_performance pp
           JOIN players p ON pp.player_id = p.id
           WHERE pp.tournament_id = ?
           AND pp.opponent_rating IS NOT NULL 
           AND pp.opponent_rating > 0
           GROUP BY pp.player_id, p.name
-          HAVING games_played >= 3
+          HAVING games_played >= 1 -- Lower minimum games requirement
         )
         SELECT 
           pg.player_id,
           pg.name,
           pg.games_played,
           pg.total_score,
-          (pg.total_score / pg.games_played * 100) as score_percentage,
+          CASE 
+            WHEN pg.games_played > 0 THEN (pg.total_score / pg.games_played * 100)
+            ELSE 0
+          END as score_percentage,
           tr.rating as player_rating,
           pg.avg_opponent_rating,
-          (pg.avg_opponent_rating + CASE
-            WHEN (pg.total_score / pg.games_played * 100) >= 90 THEN 366
-            WHEN (pg.total_score / pg.games_played * 100) >= 80 THEN 240
-            WHEN (pg.total_score / pg.games_played * 100) >= 70 THEN 141
-            WHEN (pg.total_score / pg.games_played * 100) >= 60 THEN 57
-            WHEN (pg.total_score / pg.games_played * 100) >= 50 THEN 0
-            WHEN (pg.total_score / pg.games_played * 100) >= 40 THEN -57
-            WHEN (pg.total_score / pg.games_played * 100) >= 30 THEN -141
-            WHEN (pg.total_score / pg.games_played * 100) >= 20 THEN -240
-            ELSE -366
-          END) as performance_rating
+          pg.player_ratings
         FROM player_games pg
         JOIN tournament_results tr ON pg.player_id = tr.player_id AND tr.tournament_id = ?
-        ORDER BY performance_rating DESC
-        LIMIT 5
       `, [tournament.id, tournament.id]);
 
-      if (topPerformers.length > 0) {
-        console.log(chalk.cyan('Player                   | Rating | Perf Rating | Games | Score | Score %'));
-        console.log(chalk.gray('-------------------------|--------|-------------|-------|-------|--------'));
+      console.log(`Found ${tournamentPlayers.length} players with performance data for ${tournament.name}`);
 
-        for (const performer of topPerformers) {
-          console.log(
-            `${performer.name.padEnd(25)}| ` +
-            `${(performer.player_rating || 'Unr').toString().padEnd(8)}| ` +
-            `${chalk.yellow(Math.round(performer.performance_rating).toString().padEnd(13))}| ` +
-            `${performer.games_played.toString().padEnd(7)}| ` +
-            `${performer.total_score.toFixed(1).padEnd(7)}| ` +
-            `${performer.score_percentage.toFixed(1)}`
-          );
+      // Calculate performance ratings for all players in the tournament
+      for (const player of tournamentPlayers) {
+        try {
+          // Validate data
+          if (!player.avg_opponent_rating || isNaN(player.avg_opponent_rating)) {
+            console.log(`Warning: Invalid opponent rating for player ${player.name} in ${tournament.name}`);
+            continue;
+          }
+
+          // Ensure score percentage is valid
+          let scorePercentage = player.score_percentage;
+
+          // Debug the raw values
+          console.log(`Raw data for ${player.name}: games_played=${player.games_played}, total_score=${player.total_score}, score_percentage=${player.score_percentage}`);
+
+          // Recalculate score percentage to ensure accuracy
+          if (player.games_played > 0) {
+            scorePercentage = (player.total_score / player.games_played) * 100;
+            console.log(`Recalculated score percentage for ${player.name}: ${scorePercentage.toFixed(1)}% (${player.total_score}/${player.games_played})`);
+          } else {
+            scorePercentage = 0;
+            console.log(`No games played for ${player.name}, setting score percentage to 0%`);
+          }
+
+          // Check if player is unrated
+          const playerRatings = player.player_ratings ? player.player_ratings.split(',') : [];
+          const isUnrated = playerRatings.length === 0 || playerRatings.every(rating => !rating || rating === 'null');
+
+          // Calculate performance rating using the linear TPR formula
+          const performanceRating = isUnrated
+            ? Math.round(player.avg_opponent_rating + (scorePercentage - 50) * 8)
+            : Math.round(player.avg_opponent_rating + (scorePercentage - 50) * 10);
+
+          // Log the calculation details for debugging
+          console.log(`Player: ${player.name}, Games: ${player.games_played}, Score: ${player.total_score}, Score%: ${scorePercentage.toFixed(1)}, Avg Opp: ${Math.round(player.avg_opponent_rating)}, Unrated: ${isUnrated}, TPR: ${performanceRating}`);
 
           // Store tournament-specific performance rating
           await db.run(`
@@ -251,15 +250,50 @@ async function generatePerformanceReport(options = {}) {
               performance_rating
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
           `, [
-            performer.player_id,
+            player.player_id,
             tournament.id,
-            performer.games_played,
-            performer.total_score,
-            performer.score_percentage,
-            performer.score_percentage, // For tournament-specific, we don't calculate expected score
-            performer.avg_opponent_rating,
-            performer.performance_rating
+            player.games_played,
+            player.total_score,
+            scorePercentage,
+            scorePercentage, // For tournament-specific, we don't calculate expected score
+            player.avg_opponent_rating,
+            performanceRating
           ]);
+        } catch (error) {
+          console.error(`Error calculating performance rating for player ${player.name} in ${tournament.name}:`, error);
+        }
+      }
+
+      // Get top 5 performers for display only
+      const topPerformers = await db.all(`
+        SELECT 
+          p.name,
+          tr.rating as player_rating,
+          pr.performance_rating,
+          pr.games_played,
+          pr.total_score,
+          pr.score_percentage
+        FROM performance_ratings pr
+        JOIN players p ON pr.player_id = p.id
+        JOIN tournament_results tr ON p.id = tr.player_id AND tr.tournament_id = pr.tournament_id
+        WHERE pr.tournament_id = ?
+        ORDER BY pr.performance_rating DESC
+        LIMIT 5
+      `, [tournament.id]);
+
+      if (topPerformers.length > 0) {
+        console.log(chalk.cyan('Player                   | Rating | Perf Rating | Games | Score | Score %'));
+        console.log(chalk.gray('-------------------------|--------|-------------|-------|-------|--------'));
+
+        for (const performer of topPerformers) {
+          console.log(
+            `${performer.name.padEnd(25)}| ` +
+            `${(performer.player_rating || 'Unr').toString().padEnd(8)}| ` +
+            `${chalk.yellow(Math.round(performer.performance_rating).toString().padEnd(13))}| ` +
+            `${performer.games_played.toString().padEnd(7)}| ` +
+            `${performer.total_score.toFixed(1).padEnd(7)}| ` +
+            `${performer.score_percentage.toFixed(1)}`
+          );
         }
       } else {
         console.log('No performance data available for this tournament.');

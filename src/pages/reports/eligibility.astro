@@ -1,0 +1,97 @@
+---
+export const lang = "ts";
+
+import Layout from "../../layouts/Layout.astro";
+import { parse } from "csv-parse/sync";
+import { readFileSync } from "fs";
+import { join } from "path";
+
+interface ProcessedRecord {
+  name: string;
+  eligible: "Yes" | "No";
+  games_played: number;
+  tournaments: number;
+  rating: number;
+  federation: string;
+  tournament_details: string;
+  combined_details: string;
+}
+
+// Read and parse the CSV file
+const csvContent = readFileSync(
+  join(process.cwd(), "scripts/rating_eligibility_report.csv"),
+  "utf-8"
+);
+const records = parse(csvContent, {
+  columns: true,
+  skip_empty_lines: true,
+});
+
+// Process the records to calculate eligibility
+const processedRecords = records
+  .map((record: any): ProcessedRecord => {
+    const gamesPlayed = parseInt(record["Games vs Rated"]);
+    const tournaments = record["Combined Tournaments"] === "Yes" ? 2 : 1;
+
+    return {
+      name: record["Player Name"],
+      games_played: gamesPlayed,
+      tournaments: tournaments,
+      rating: parseInt(record["Estimated Rating"]),
+      federation: record["Federation"],
+      tournament_details: record["Tournament(s)"],
+      combined_details: record["Combined Details"],
+    };
+  })
+  .sort((a: ProcessedRecord, b: ProcessedRecord) => {
+    // Sort by eligibility first (Yes before No), then by rating (descending)
+    if (a.eligible !== b.eligible) {
+      return b.eligible === "Yes" ? 1 : -1;
+    }
+    return b.rating - a.rating;
+  });
+---
+
+<Layout title="Rating Eligibility">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Rating Eligibility Report</h1>
+
+    <section class="mb-12">
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Federation</th>
+              <th>Estimated Rating</th>
+              <th>Games vs Rated</th>
+              <th>Tournaments</th>
+              <th>Tournament Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              processedRecords.map((player: ProcessedRecord) => (
+                <tr>
+                  <td>{player.name}</td>
+                  <td>{player.federation}</td>
+                  <td>{player.rating}</td>
+                  <td>{player.games_played}</td>
+                  <td>{player.tournaments}</td>
+                  <td>
+                    {player.tournament_details}
+                    {player.combined_details && (
+                      <div class="text-sm text-gray-500">
+                        {player.combined_details}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</Layout>

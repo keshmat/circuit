@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getDb, type Player } from "../../lib/db";
+import LeaderboardTable from "../../components/LeaderboardTable.astro";
+
+const db = await getDb();
+const records = await db.all<Player[]>(`
+  SELECT name, total_points as points, tournaments_played
+  FROM circuit_leaderboard
+  ORDER BY total_points DESC
+`);
+---
+
+<Layout title="Circuit Leaderboard">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Circuit Leaderboard</h1>
+
+    <section class="mb-12">
+      <LeaderboardTable records={records} />
+    </section>
+  </main>
+</Layout>
