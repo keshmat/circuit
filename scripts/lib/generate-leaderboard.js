@@ -71,10 +71,10 @@ async function generateLeaderboard(options = {}) {
       player.tournaments_played,
       player.total_points,
       player.avg_points_per_tournament,
-      player.avg_rating,
-      player.avg_opponent_rating,
-      player.total_game_points,
-      player.total_games_played,
+      player.avg_rating || 0,
+      player.avg_opponent_rating || 0,
+      player.total_game_points || 0,
+      player.total_games_played || 0,
       winPercentage
     ]);
   }

@@ -8,8 +8,8 @@
   },
   "scripts": {
     "setup": "yarn install",
-    "init": "node circuit.js init",
     "process": "node circuit.js process",
+    "import": "node circuit.js import",
     "leaderboard": "node circuit.js leaderboard",
     "rating-eligibility": "node circuit.js rating-progress",
     "performance": "node circuit.js performance"

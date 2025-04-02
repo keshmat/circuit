@@ -17,14 +17,14 @@ program
   .description('Chess tournament circuit management CLI')
   .version('1.0.0');
 
-// Init command - Run all reports and save to database
+// Process command - Run all reports and save to database
 program
-  .command('init')
-  .description('Initialize database and generate all reports')
+  .command('process')
+  .description('Process tournament files and generate all reports')
   .argument('[directory]', 'Directory containing tournament Excel files', './tournament_files')
   .option('-f, --force', 'Force reprocessing of all files')
   .action(async (directory, options) => {
-    console.log(chalk.blue('🚀 Initializing database and generating reports...'));
+    console.log(chalk.blue('🚀 Processing tournament files and generating reports...'));
 
     if (!fs.existsSync(directory)) {
       console.error(chalk.red('❌ Error:'), `Directory not found: ${directory}`);
@@ -55,14 +55,14 @@ program
     }
   });
 
-// Process command - Import tournament files and seed database
+// Import command - Import tournament files and seed database
 program
-  .command('process')
-  .description('Process tournament files and create/update the database')
+  .command('import')
+  .description('Import tournament files and create/update the database')
   .argument('[directory]', 'Directory containing tournament Excel files', './tournament_files')
   .option('-f, --force', 'Force reprocessing of all files')
   .action(async (directory, options) => {
-    console.log(chalk.blue('🏆 Processing tournament files from:'), directory);
+    console.log(chalk.blue('🏆 Importing tournament files from:'), directory);
 
     if (!fs.existsSync(directory)) {
       console.error(chalk.red('❌ Error:'), `Directory not found: ${directory}`);
@@ -71,7 +71,7 @@ program
 
     try {
       await processChessTournaments(directory, options.force);
-      console.log(chalk.green('✓ Processing complete!'));
+      console.log(chalk.green('✓ Import complete!'));
     } catch (error) {
       console.error(chalk.red('❌ Error:'), error.message);
       process.exit(1);
@@ -135,11 +135,11 @@ program
 program
   .addHelpText('after', `
 Examples:
-  $ circuit init ./my_tournament_files    Initialize database and generate all reports
-  $ circuit process ./my_tournament_files Process tournament files
-  $ circuit leaderboard                   Generate circuit leaderboard
-  $ circuit rating-progress               Show unrated to rated player progress
-  $ circuit performance                   Generate performance ratings`);
+  $ circuit process ./my_tournament_files    Process files and generate all reports
+  $ circuit import ./my_tournament_files     Import tournament files
+  $ circuit leaderboard                      Generate circuit leaderboard
+  $ circuit rating-progress                  Show unrated to rated player progress
+  $ circuit performance                      Generate performance ratings`);
 
 // Parse command line arguments
 program.parse(process.argv);
