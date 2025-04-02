@@ -115,6 +115,27 @@ async function generatePerformanceReport(options = {}) {
     const diffFromExpected = scorePercentage - expectedScorePercentage;
     const diffColor = diffFromExpected >= 0 ? chalk.green : chalk.red;
 
+    // Store performance rating in database
+    await db.run(`
+      INSERT OR REPLACE INTO performance_ratings (
+        player_id,
+        games_played,
+        total_score,
+        score_percentage,
+        expected_score_percentage,
+        avg_opponent_rating,
+        performance_rating
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `, [
+      player.id,
+      totalGames,
+      totalScore,
+      scorePercentage,
+      expectedScorePercentage,
+      avgOpponentRating,
+      performanceRating
+    ]);
+
     // Display result
     console.log(
       `${player.name.padEnd(26)}| ` +
@@ -207,7 +228,7 @@ async function generatePerformanceReport(options = {}) {
         console.log(chalk.cyan('Player                   | Rating | Perf Rating | Games | Score | Score %'));
         console.log(chalk.gray('-------------------------|--------|-------------|-------|-------|--------'));
 
-        topPerformers.forEach(performer => {
+        for (const performer of topPerformers) {
           console.log(
             `${performer.name.padEnd(25)}| ` +
             `${(performer.player_rating || 'Unr').toString().padEnd(8)}| ` +
@@ -216,7 +237,30 @@ async function generatePerformanceReport(options = {}) {
             `${performer.total_score.toFixed(1).padEnd(7)}| ` +
             `${performer.score_percentage.toFixed(1)}`
           );
-        });
+
+          // Store tournament-specific performance rating
+          await db.run(`
+            INSERT OR REPLACE INTO performance_ratings (
+              player_id,
+              tournament_id,
+              games_played,
+              total_score,
+              score_percentage,
+              expected_score_percentage,
+              avg_opponent_rating,
+              performance_rating
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          `, [
+            performer.player_id,
+            tournament.id,
+            performer.games_played,
+            performer.total_score,
+            performer.score_percentage,
+            performer.score_percentage, // For tournament-specific, we don't calculate expected score
+            performer.avg_opponent_rating,
+            performer.performance_rating
+          ]);
+        }
       } else {
         console.log('No performance data available for this tournament.');
       }

@@ -17,6 +17,44 @@ program
   .description('Chess tournament circuit management CLI')
   .version('1.0.0');
 
+// Init command - Run all reports and save to database
+program
+  .command('init')
+  .description('Initialize database and generate all reports')
+  .argument('[directory]', 'Directory containing tournament Excel files', './tournament_files')
+  .option('-f, --force', 'Force reprocessing of all files')
+  .action(async (directory, options) => {
+    console.log(chalk.blue('🚀 Initializing database and generating reports...'));
+
+    if (!fs.existsSync(directory)) {
+      console.error(chalk.red('❌ Error:'), `Directory not found: ${directory}`);
+      process.exit(1);
+    }
+
+    try {
+      // Step 1: Process tournament files
+      console.log(chalk.blue('\n📁 Processing tournament files...'));
+      await processChessTournaments(directory, options.force);
+
+      // Step 2: Generate leaderboard
+      console.log(chalk.blue('\n📊 Generating circuit leaderboard...'));
+      await generateLeaderboard({ saveToDb: true });
+
+      // Step 3: Generate rating progress report
+      console.log(chalk.blue('\n📈 Generating rating eligibility report...'));
+      await generateRatingProgressReport({ saveToDb: true });
+
+      // Step 4: Generate performance ratings
+      console.log(chalk.blue('\n⚡ Generating performance ratings...'));
+      await generatePerformanceReport({ saveToDb: true });
+
+      console.log(chalk.green('\n✓ All reports generated and saved to database!'));
+    } catch (error) {
+      console.error(chalk.red('❌ Error:'), error.message);
+      process.exit(1);
+    }
+  });
+
 // Process command - Import tournament files and seed database
 program
   .command('process')
@@ -97,10 +135,11 @@ program
 program
   .addHelpText('after', `
 Examples:
-  $ circuit process ./my_tournament_files    Process tournament files
-  $ circuit leaderboard                      Generate circuit leaderboard
-  $ circuit rating-progress                  Show unrated to rated player progress
-  $ circuit performance                      Generate performance ratings`);
+  $ circuit init ./my_tournament_files    Initialize database and generate all reports
+  $ circuit process ./my_tournament_files Process tournament files
+  $ circuit leaderboard                   Generate circuit leaderboard
+  $ circuit rating-progress               Show unrated to rated player progress
+  $ circuit performance                   Generate performance ratings`);
 
 // Parse command line arguments
 program.parse(process.argv);

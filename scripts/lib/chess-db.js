@@ -152,6 +152,66 @@ async function createTables(db) {
     JOIN tournaments t ON g.tournament_id = t.id
   `);
 
+  // Performance ratings table
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS performance_ratings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id INTEGER NOT NULL,
+      tournament_id INTEGER,
+      games_played INTEGER NOT NULL,
+      total_score REAL NOT NULL,
+      score_percentage REAL NOT NULL,
+      expected_score_percentage REAL NOT NULL,
+      avg_opponent_rating REAL NOT NULL,
+      performance_rating INTEGER NOT NULL,
+      last_updated TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (player_id) REFERENCES players(id),
+      FOREIGN KEY (tournament_id) REFERENCES tournaments(id),
+      UNIQUE(player_id, tournament_id)
+    )
+  `);
+
+  // Rating eligibility table
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS rating_eligibility (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id INTEGER NOT NULL,
+      tournament_id INTEGER,
+      games_vs_rated INTEGER NOT NULL,
+      score_vs_rated REAL NOT NULL,
+      estimated_rating INTEGER NOT NULL,
+      total_tournament_points REAL,
+      combined_tournaments BOOLEAN NOT NULL,
+      combined_tournament_ids TEXT,
+      combined_tournament_names TEXT,
+      combined_tournament_dates TEXT,
+      last_updated TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (player_id) REFERENCES players(id),
+      FOREIGN KEY (tournament_id) REFERENCES tournaments(id),
+      UNIQUE(player_id, tournament_id)
+    )
+  `);
+
+  // Leaderboard table
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS leaderboard (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id INTEGER NOT NULL,
+      rank INTEGER NOT NULL,
+      tournaments_played INTEGER NOT NULL,
+      total_points REAL NOT NULL,
+      avg_points_per_tournament REAL NOT NULL,
+      avg_rating REAL,
+      avg_opponent_rating REAL,
+      total_game_points REAL NOT NULL,
+      total_games_played INTEGER NOT NULL,
+      win_percentage REAL NOT NULL,
+      last_updated TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (player_id) REFERENCES players(id),
+      UNIQUE(player_id)
+    )
+  `);
+
   // Circuit leaderboard view
   await db.exec(`
     CREATE VIEW IF NOT EXISTS circuit_leaderboard AS

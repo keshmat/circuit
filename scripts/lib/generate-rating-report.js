@@ -164,6 +164,27 @@ async function generateRatingProgressReport(options = {}) {
           combined_tournaments: false,
           combined_with: null
         });
+
+        // Store in database
+        await db.run(`
+          INSERT OR REPLACE INTO rating_eligibility (
+            player_id,
+            tournament_id,
+            games_vs_rated,
+            score_vs_rated,
+            estimated_rating,
+            total_tournament_points,
+            combined_tournaments
+          ) VALUES (?, ?, ?, ?, ?, ?, ?)
+        `, [
+          player.player_id,
+          tournament.id,
+          gamesVsRated,
+          scoreVsRated,
+          estimatedRating,
+          player.points,
+          false
+        ]);
       }
     }
   }
@@ -339,6 +360,29 @@ async function generateRatingProgressReport(options = {}) {
         tournament_names: tournamentNames,
         tournament_dates: tournamentDates
       });
+
+      // Store combined results in database
+      await db.run(`
+        INSERT OR REPLACE INTO rating_eligibility (
+          player_id,
+          games_vs_rated,
+          score_vs_rated,
+          estimated_rating,
+          combined_tournaments,
+          combined_tournament_ids,
+          combined_tournament_names,
+          combined_tournament_dates
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `, [
+        parseInt(playerID),
+        totalGamesVsRated,
+        totalScoreVsRated,
+        estimatedRating,
+        true,
+        JSON.stringify(tournamentIds),
+        JSON.stringify(tournamentNames),
+        JSON.stringify(tournamentDates)
+      ]);
 
       // Add to main results for CSV export
       reportResults.push({

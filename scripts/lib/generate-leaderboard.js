@@ -34,7 +34,8 @@ async function generateLeaderboard(options = {}) {
       avg_rating,
       avg_opponent_rating,
       total_game_points,
-      total_games_played
+      total_games_played,
+      player_id
     FROM circuit_leaderboard
     ORDER BY total_points DESC, avg_points_per_tournament DESC
     ${topCount ? `LIMIT ${topCount}` : ''}
@@ -44,6 +45,38 @@ async function generateLeaderboard(options = {}) {
     console.log("No players found in the database. Please process tournament files first.");
     await db.close();
     return;
+  }
+
+  // Store leaderboard data in database
+  for (const [index, player] of leaderboard.entries()) {
+    const winPercentage = player.total_games_played ?
+      (player.total_game_points / player.total_games_played) * 100 : 0;
+
+    await db.run(`
+      INSERT OR REPLACE INTO leaderboard (
+        player_id,
+        rank,
+        tournaments_played,
+        total_points,
+        avg_points_per_tournament,
+        avg_rating,
+        avg_opponent_rating,
+        total_game_points,
+        total_games_played,
+        win_percentage
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `, [
+      player.player_id,
+      index + 1,
+      player.tournaments_played,
+      player.total_points,
+      player.avg_points_per_tournament,
+      player.avg_rating,
+      player.avg_opponent_rating,
+      player.total_game_points,
+      player.total_games_played,
+      winPercentage
+    ]);
   }
 
   // Display the leaderboard header
