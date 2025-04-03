@@ -5,7 +5,11 @@ import LeaderboardTable from "../../components/LeaderboardTable.astro";
 
 const db = await getDb();
 const records = await db.all<Player[]>(`
-  SELECT name, total_points as points, tournaments_played
+  SELECT 
+    name, 
+    total_points as points, 
+    tournaments_played,
+    tournaments_counted
   FROM circuit_leaderboard
   ORDER BY total_points DESC
 `);

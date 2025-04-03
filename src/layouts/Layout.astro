@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import keshmatLogo from "../assets/keshmat-logo.png";
+import { getTournamentLinks } from "../lib/tournaments";
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
 
 const { title } = Astro.props;
 const isIndexPage = Astro.url.pathname === "/";
+const tournamentLinks = await getTournamentLinks();
 ---
 
 <!doctype html>
@@ -68,12 +70,13 @@ const isIndexPage = Astro.url.pathname === "/";
               <details>
                 <summary>Tournaments</summary>
                 <ul class="p-2 bg-base-200 rounded-t-none z-50">
-                  <li><a href="/tournaments/january">January</a></li>
-                  <li><a href="/tournaments/february">February</a></li>
-                  <li><a href="/tournaments/march">March</a></li>
-                  <li><a href="/tournaments/july">July</a></li>
-                  <li><a href="/tournaments/august">August</a></li>
-                  <li><a href="/tournaments/december">December</a></li>
+                  {
+                    tournamentLinks.map((link) => (
+                      <li>
+                        <a href={link.url}>{link.displayName}</a>
+                      </li>
+                    ))
+                  }
                 </ul>
               </details>
             </li>

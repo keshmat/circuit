@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getTournamentLinks } from "../../lib/tournaments";
+const tournamentLinks = await getTournamentLinks();
+---
+
+<Layout title="Tournaments">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Tournaments</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        tournamentLinks.map((tournament) => {
+          const imagePath = `/assets/${tournament.year}-${tournament.month}.jpg`;
+          return (
+            <a
+              href={tournament.url}
+              class="card bg-base-200 hover:bg-base-300 transition-colors overflow-hidden"
+            >
+              <figure class="relative h-48">
+                <img
+                  src={imagePath}
+                  alt={`${tournament.displayName} tournament`}
+                  class="w-full h-full object-cover"
+                  onerror="this.style.display='none'; this.parentElement.style.background='repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px'"
+                />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">{tournament.displayName}</h2>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </main>
+</Layout>

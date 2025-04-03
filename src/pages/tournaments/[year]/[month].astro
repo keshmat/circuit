@@ -1,0 +1,176 @@
+---
+export const lang = "ts";
+
+import Layout from "../../../layouts/Layout.astro";
+import { getDb, type TournamentResult } from "../../../lib/db";
+import {
+  getStaticPathsForTournaments,
+  getTournamentLinks,
+} from "../../../lib/tournaments";
+import TournamentTable from "../../../components/TournamentTable.astro";
+import { readdir } from "node:fs/promises";
+import { join } from "node:path";
+
+export const getStaticPaths = getStaticPathsForTournaments;
+
+const { year, month } = Astro.params;
+const db = await getDb();
+
+// Get tournament results for the specified month and year
+const results = await db.all<TournamentResult[]>(
+  `
+  SELECT 
+    p.name,
+    tr.points,
+    (SELECT COUNT(*) FROM games g 
+     WHERE (g.white_player_id = p.id OR g.black_player_id = p.id) 
+     AND g.tournament_id = t.id) as games_played,
+    (SELECT COUNT(*) FROM games g 
+     WHERE ((g.white_player_id = p.id AND g.result = '1-0') OR 
+            (g.black_player_id = p.id AND g.result = '0-1') OR
+            (g.white_player_id = p.id AND g.result = '1-0+') OR
+            (g.black_player_id = p.id AND g.result = '0-1+'))
+     AND g.tournament_id = t.id) as wins,
+    (SELECT COUNT(*) FROM games g 
+     WHERE ((g.white_player_id = p.id AND g.result = '0-1') OR 
+            (g.black_player_id = p.id AND g.result = '1-0'))
+     AND g.tournament_id = t.id) as losses,
+    (SELECT COUNT(*) FROM games g 
+     WHERE g.result = '1/2-1/2' 
+     AND (g.white_player_id = p.id OR g.black_player_id = p.id)
+     AND g.tournament_id = t.id) as draws,
+    pr.performance_rating as performance
+  FROM tournaments t
+  JOIN tournament_results tr ON t.id = tr.tournament_id
+  JOIN players p ON tr.player_id = p.id
+  LEFT JOIN performance_ratings pr ON p.id = pr.player_id AND pr.tournament_id = t.id
+  WHERE LOWER(t.name) LIKE ? AND t.date LIKE ?
+  ORDER BY tr.points DESC
+`,
+  [`%${month}%`, `%${year}%`]
+);
+
+const tournamentLinks = await getTournamentLinks();
+const tournament = tournamentLinks.find(
+  (t) => t.year === year && t.month === month
+);
+
+// Get images from the tournament folder
+const imageDir = join(process.cwd(), "src", "assets", `${year}-${month}`);
+let images: string[] = [];
+try {
+  const files = await readdir(imageDir);
+  console.log(files);
+  images = files
+    .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file))
+    .map((file) => `/src/assets/${year}-${month}/${file}`);
+} catch (error) {
+  console.error(`No images found for ${year}-${month}`);
+}
+---
+
+<Layout
+  title={`${month.charAt(0).toUpperCase() + month.slice(1)} ${year} Tournament`}
+>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">
+      {month.charAt(0).toUpperCase() + month.slice(1)}
+      {year} Tournament
+    </h1>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Tournament Results</h2>
+      <div class="overflow-x-auto">
+        <div id="resultsContainer">
+          <TournamentTable records={results} />
+        </div>
+      </div>
+      {
+        results.length > 5 && (
+          <div class="mt-4 text-center">
+            <button class="btn btn-primary" id="showMoreBtn">
+              Show All
+            </button>
+          </div>
+        )
+      }
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Photos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          images.length > 0 ? (
+            images.map((image, index) => (
+              <figure class="relative h-64">
+                <img
+                  src={image}
+                  alt={`${month.charAt(0).toUpperCase() + month.slice(1)} ${year} Tournament - Photo ${index + 1}`}
+                  class="w-full h-full object-cover rounded-lg"
+                  onerror="this.style.display='none'; this.parentElement.style.background='repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px'"
+                />
+              </figure>
+            ))
+          ) : (
+            <figure class="relative h-64">
+              <div
+                class="w-full h-full rounded-lg"
+                style="background: repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px"
+              />
+            </figure>
+          )
+        }
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h3 class="card-title">More Photos</h3>
+            <p>View all photos from this tournament</p>
+            <div class="card-actions justify-end">
+              {
+                tournament?.galleryUrl ? (
+                  <a href={tournament.galleryUrl} class="btn btn-primary">
+                    View Gallery
+                  </a>
+                ) : (
+                  <button class="btn btn-disabled" disabled>
+                    Gallery Coming Soon
+                  </button>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  #resultsContainer {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  #resultsContainer.expanded {
+    max-height: none;
+  }
+  #resultsContainer table tbody tr:nth-child(n + 6) {
+    display: none;
+  }
+  #resultsContainer.expanded table tbody tr {
+    display: table-row;
+  }
+</style>
+
+<script>
+  const showMoreBtn = document.getElementById("showMoreBtn");
+  let isExpanded = false;
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener("click", () => {
+      const container = document.getElementById("resultsContainer");
+      if (container) {
+        container.classList.toggle("expanded");
+        showMoreBtn.textContent = isExpanded ? "Show All" : "Show Less";
+        isExpanded = !isExpanded;
+      }
+    });
+  }
+</script>
