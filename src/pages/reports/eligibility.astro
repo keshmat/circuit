@@ -8,7 +8,6 @@ import { join } from "path";
 
 interface ProcessedRecord {
   name: string;
-  eligible: "Yes" | "No";
   games_played: number;
   tournaments: number;
   rating: number;
@@ -44,10 +43,6 @@ const processedRecords = records
     };
   })
   .sort((a: ProcessedRecord, b: ProcessedRecord) => {
-    // Sort by eligibility first (Yes before No), then by rating (descending)
-    if (a.eligible !== b.eligible) {
-      return b.eligible === "Yes" ? 1 : -1;
-    }
     return b.rating - a.rating;
   });
 ---

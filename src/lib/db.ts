@@ -18,6 +18,7 @@ export interface Player {
   name: string;
   points: string;
   tournaments_played: string;
+  tournaments_counted: string;
 }
 
 export interface TournamentResult {

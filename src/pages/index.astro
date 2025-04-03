@@ -5,7 +5,11 @@ import { getDb, type Player } from "../lib/db";
 
 const db = await getDb();
 const records = await db.all<Player[]>(`
-  SELECT name, total_points as points, tournaments_played
+  SELECT 
+    name, 
+    total_points as points, 
+    tournaments_played,
+    tournaments_counted
   FROM circuit_leaderboard
   ORDER BY total_points DESC
   LIMIT 20
@@ -26,6 +30,7 @@ const records = await db.all<Player[]>(`
               <th>Name</th>
               <th>Points</th>
               <th>Tournaments Played</th>
+              <th>Tournaments Counted</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +41,7 @@ const records = await db.all<Player[]>(`
                   <td>{player.name}</td>
                   <td>{player.points}</td>
                   <td>{player.tournaments_played}</td>
+                  <td>{player.tournaments_counted}</td>
                 </tr>
               ))
             }

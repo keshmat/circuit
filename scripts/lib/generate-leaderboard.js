@@ -21,6 +21,7 @@ async function generateLeaderboard(options = {}) {
   });
 
   console.log('\n===== KESHMAT CHESS CIRCUIT LEADERBOARD =====');
+  console.log(chalk.cyan('(Best of n-1 tournaments scoring system)'));
 
   // Get the leaderboard data
   const leaderboard = await db.all(`
@@ -28,7 +29,8 @@ async function generateLeaderboard(options = {}) {
       name, 
       federation, 
       title,
-      tournaments_played, 
+      tournaments_played,
+      tournaments_counted,
       total_points, 
       avg_points_per_tournament,
       avg_rating,
@@ -80,8 +82,8 @@ async function generateLeaderboard(options = {}) {
   }
 
   // Display the leaderboard header
-  console.log(chalk.cyan('Rank | Name                      | Title | Fed | Tournaments | Total Pts | Avg Pts | Avg Rating | Avg Opp Rating | Win %'));
-  console.log(chalk.gray('-----|---------------------------|-------|-----|-------------|-----------|---------|------------|----------------|------'));
+  console.log(chalk.cyan('Rank | Name                      | Title | Fed | Played | Counted | Total Pts | Avg Pts | Avg Rating | Avg Opp Rating | Win %'));
+  console.log(chalk.gray('-----|---------------------------|-------|-----|--------|---------|-----------|---------|------------|----------------|------'));
 
   // Display each player in the leaderboard
   leaderboard.forEach((player, index) => {
@@ -94,7 +96,8 @@ async function generateLeaderboard(options = {}) {
       `${player.name.padEnd(27)}| ` +
       `${(player.title || '').padEnd(7)}| ` +
       `${(player.federation || '').padEnd(5)}| ` +
-      `${player.tournaments_played.toString().padEnd(13)}| ` +
+      `${player.tournaments_played.toString().padEnd(8)}| ` +
+      `${player.tournaments_counted.toString().padEnd(9)}| ` +
       `${chalk.green(player.total_points.toFixed(1).padEnd(11))}| ` +
       `${player.avg_points_per_tournament.toFixed(2).padEnd(9)}| ` +
       `${Math.round(player.avg_rating || 0).toString().padEnd(12)}| ` +
@@ -105,7 +108,7 @@ async function generateLeaderboard(options = {}) {
 
   // Save the leaderboard to a CSV file
   const leaderboardCSV = [
-    'Rank,Name,Title,Federation,Tournaments Played,Total Points,Avg Points,Avg Rating,Avg Opponent Rating,Win Percentage',
+    'Rank,Name,Title,Federation,Tournaments Played,Tournaments Counted,Total Points,Avg Points,Avg Rating,Avg Opponent Rating,Win Percentage',
     ...leaderboard.map((player, index) => {
       const winPercentage = player.total_games_played ?
         ((player.total_game_points / player.total_games_played) * 100).toFixed(1) : '';
@@ -115,6 +118,7 @@ async function generateLeaderboard(options = {}) {
         `${player.title || ''},` +
         `${player.federation || ''},` +
         `${player.tournaments_played},` +
+        `${player.tournaments_counted},` +
         `${player.total_points.toFixed(1)},` +
         `${player.avg_points_per_tournament.toFixed(2)},` +
         `${Math.round(player.avg_rating || 0)},` +
@@ -190,7 +194,7 @@ async function generateLeaderboard(options = {}) {
 
   for (const category of ratingCategories) {
     const topPlayers = await db.all(`
-      SELECT name, federation, avg_rating, total_points
+      SELECT name, federation, avg_rating, total_points, tournaments_played, tournaments_counted
       FROM circuit_leaderboard
       WHERE avg_rating >= ? AND avg_rating <= ?
       ORDER BY total_points DESC, avg_points_per_tournament DESC
@@ -200,7 +204,7 @@ async function generateLeaderboard(options = {}) {
     if (topPlayers.length > 0) {
       console.log(`\n${chalk.yellow(category.name)}:`);
       topPlayers.forEach((player, idx) => {
-        console.log(`  ${idx + 1}. ${player.name} (${player.federation || '?'}) - ${player.total_points.toFixed(1)} points, Rating: ${Math.round(player.avg_rating || 0)}`);
+        console.log(`  ${idx + 1}. ${player.name} (${player.federation || '?'}) - ${player.total_points.toFixed(1)} points (${player.tournaments_counted}/${player.tournaments_played} tournaments), Rating: ${Math.round(player.avg_rating || 0)}`);
       });
     }
   }

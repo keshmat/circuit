@@ -215,23 +215,64 @@ async function createTables(db) {
   // Circuit leaderboard view
   await db.exec(`
     CREATE VIEW IF NOT EXISTS circuit_leaderboard AS
+    WITH player_tournament_counts AS (
+      SELECT 
+        p.id as player_id,
+        p.name,
+        p.federation,
+        COUNT(DISTINCT tr.tournament_id) as tournaments_played
+      FROM players p
+      JOIN tournament_results tr ON p.id = tr.player_id
+      GROUP BY p.id, p.name, p.federation
+    ),
+    max_tournaments AS (
+      SELECT MAX(tournaments_played) as max_tournaments
+      FROM player_tournament_counts
+    ),
+    player_tournament_scores AS (
+      SELECT 
+        p.id as player_id,
+        tr.tournament_id,
+        tr.points,
+        tr.title,
+        tr.rating,
+        ROW_NUMBER() OVER (PARTITION BY p.id ORDER BY tr.points DESC) as score_rank
+      FROM players p
+      JOIN tournament_results tr ON p.id = tr.player_id
+    ),
+    best_tournament_scores AS (
+      SELECT 
+        pts.player_id,
+        SUM(pts.points) as best_points,
+        COUNT(*) as tournaments_counted
+      FROM player_tournament_scores pts
+      JOIN player_tournament_counts ptc ON pts.player_id = ptc.player_id
+      CROSS JOIN max_tournaments mt
+      WHERE pts.score_rank <= CASE 
+        WHEN mt.max_tournaments > 1 THEN mt.max_tournaments - 1
+        ELSE mt.max_tournaments
+      END
+      GROUP BY pts.player_id
+    )
     SELECT 
-      p.id as player_id,
-      p.name,
-      p.federation,
-      COUNT(DISTINCT tr.tournament_id) as tournaments_played,
-      SUM(tr.points) as total_points,
-      AVG(tr.points) as avg_points_per_tournament,
-      MAX(tr.title) as title, -- Gets the most recent title
-      AVG(tr.rating) as avg_rating,
+      ptc.player_id,
+      ptc.name,
+      ptc.federation,
+      ptc.tournaments_played,
+      bts.tournaments_counted,
+      bts.best_points as total_points,
+      bts.best_points / bts.tournaments_counted as avg_points_per_tournament,
+      MAX(pts.title) as title, -- Gets the most recent title
+      AVG(pts.rating) as avg_rating,
       (SELECT AVG(opponent_rating) FROM player_performance 
-       WHERE player_id = p.id AND opponent_rating IS NOT NULL AND opponent_rating > 0) as avg_opponent_rating,
-      (SELECT SUM(score) FROM player_performance WHERE player_id = p.id) as total_game_points,
-      (SELECT COUNT(*) FROM player_performance WHERE player_id = p.id) as total_games_played
-    FROM players p
-    JOIN tournament_results tr ON p.id = tr.player_id
-    GROUP BY p.id, p.name, p.federation
-    ORDER BY total_points DESC, avg_points_per_tournament DESC
+       WHERE player_id = ptc.player_id AND opponent_rating IS NOT NULL AND opponent_rating > 0) as avg_opponent_rating,
+      (SELECT SUM(score) FROM player_performance WHERE player_id = ptc.player_id) as total_game_points,
+      (SELECT COUNT(*) FROM player_performance WHERE player_id = ptc.player_id) as total_games_played
+    FROM player_tournament_counts ptc
+    JOIN best_tournament_scores bts ON ptc.player_id = bts.player_id
+    JOIN player_tournament_scores pts ON ptc.player_id = pts.player_id
+    GROUP BY ptc.player_id, ptc.name, ptc.federation, ptc.tournaments_played, bts.best_points, bts.tournaments_counted
+    ORDER BY bts.best_points DESC, bts.best_points / bts.tournaments_counted DESC
   `);
 
   console.log('Database tables created');

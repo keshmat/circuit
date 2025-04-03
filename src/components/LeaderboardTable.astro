@@ -16,6 +16,7 @@ const { records } = Astro.props;
         <th>Name</th>
         <th>Points</th>
         <th>Tournaments Played</th>
+        <th>Tournaments Counted</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@ const { records } = Astro.props;
             <td>{player.name}</td>
             <td>{player.points}</td>
             <td>{player.tournaments_played}</td>
+            <td>{player.tournaments_counted}</td>
           </tr>
         ))
       }
