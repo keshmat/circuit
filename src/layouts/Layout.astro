@@ -27,8 +27,24 @@ const tournamentLinks = await getTournamentLinks();
     <div class="min-h-screen bg-base-100">
       <div class="navbar w-full px-4">
         <div class="navbar-start">
-          <div class="dropdown">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <div
+            class={isIndexPage
+              ? "sm:hidden flex items-center gap-2"
+              : "flex items-center gap-2"}
+          >
+            <img
+              src={keshmatLogo.src}
+              alt="Keshmat Logo"
+              class="w-10 sm:w-12 md:w-14 lg:w-16"
+            />
+            <a href="/" class="btn btn-ghost text-lg sm:text-xl p-1">
+              Keshmat Chess Circuit
+            </a>
+          </div>
+        </div>
+        <div class="navbar-end">
+          <div class="dropdown lg:hidden dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -40,7 +56,7 @@ const tournamentLinks = await getTournamentLinks();
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M4 6h16M4 12h8m-8 6h16"></path>
+                  d="M4 6h16M12 12h8m-16 6h16"></path>
               </svg>
             </div>
             <ul
@@ -52,45 +68,37 @@ const tournamentLinks = await getTournamentLinks();
               <li><a href="/reports">Reports</a></li>
             </ul>
           </div>
-          {
-            !isIndexPage && (
-              <>
-                <img src={keshmatLogo.src} alt="Keshmat Logo" class="w-16" />
-                <a href="/" class="btn btn-ghost text-xl">
-                  Keshmat Chess Circuit
-                </a>
-              </>
-            )
-          }
-        </div>
-        <div class="navbar-end hidden lg:flex">
-          <ul class="menu menu-horizontal px-1">
-            <li><a href="/">Home</a></li>
-            <li>
-              <details>
-                <summary>Tournaments</summary>
-                <ul class="p-2 bg-base-200 rounded-t-none z-50">
-                  {
-                    tournamentLinks.map((link) => (
-                      <li>
-                        <a href={link.url}>{link.displayName}</a>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </details>
-            </li>
-            <li>
-              <details>
-                <summary>Reports</summary>
-                <ul class="p-2 bg-base-200 rounded-t-none z-50 right-0">
-                  <li><a href="/reports/leaderboard">Leaderboard</a></li>
-                  <li><a href="/reports/ratings">Performance Ratings</a></li>
-                  <li><a href="/reports/eligibility">Rating Eligibility</a></li>
-                </ul>
-              </details>
-            </li>
-          </ul>
+          <div class="hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/">Home</a></li>
+              <li>
+                <details>
+                  <summary>Tournaments</summary>
+                  <ul class="p-2 bg-base-200 rounded-t-none z-50">
+                    {
+                      tournamentLinks.map((link) => (
+                        <li>
+                          <a href={link.url}>{link.displayName}</a>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Reports</summary>
+                  <ul class="p-2 bg-base-200 rounded-t-none z-50 right-0">
+                    <li><a href="/reports/leaderboard">Leaderboard</a></li>
+                    <li><a href="/reports/ratings">Performance Ratings</a></li>
+                    <li>
+                      <a href="/reports/eligibility">Rating Eligibility</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <slot />

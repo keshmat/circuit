@@ -11,13 +11,13 @@ const tournamentLinks = await getTournamentLinks();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         tournamentLinks.map((tournament) => {
-          const imagePath = `/assets/${tournament.year}-${tournament.month}.jpg`;
+          const imagePath = `/src/assets/${tournament.year}-${tournament.month}/card.jpg`;
           return (
             <a
               href={tournament.url}
               class="card bg-base-200 hover:bg-base-300 transition-colors overflow-hidden"
             >
-              <figure class="relative h-48">
+              <figure class="relative h-64">
                 <img
                   src={imagePath}
                   alt={`${tournament.displayName} tournament`}
