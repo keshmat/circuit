@@ -10,6 +10,8 @@ import {
 import TournamentTable from "../../../components/TournamentTable.astro";
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 export const getStaticPaths = getStaticPathsForTournaments;
 
@@ -56,13 +58,29 @@ const tournament = tournamentLinks.find(
 );
 
 // Get images from the tournament folder
-const imageDir = join(process.cwd(), "src", "assets", `${year}-${month}`);
-let images: string[] = [];
+const imageDir = `src/assets/${year}-${month}`;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,webp}"
+);
+let imageEntries: { src: ImageMetadata; alt: string }[] = [];
+
 try {
-  const files = await readdir(imageDir);
-  images = files
-    .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file))
-    .map((file) => `/src/assets/${year}-${month}/${file}`);
+  const files = await readdir(join(process.cwd(), imageDir));
+  imageEntries = await Promise.all(
+    files
+      .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file))
+      .map(async (file) => {
+        const imagePath = `/src/assets/${year}-${month}/${file}`;
+        const imageModule = images[imagePath];
+        if (!imageModule) {
+          throw new Error(`Image not found: ${imagePath}`);
+        }
+        return {
+          src: (await imageModule()).default,
+          alt: `Tournament photo ${file}`,
+        };
+      })
+  );
 } catch (error) {
   console.error(`No images found for ${year}-${month}`);
 }
@@ -99,25 +117,15 @@ try {
       <h2 class="text-2xl font-semibold mb-4">Photos</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
-          images.length > 0 ? (
-            images.map((image, index) => (
-              <figure class="relative h-64">
-                <img
-                  src={image}
-                  alt={`${month.charAt(0).toUpperCase() + month.slice(1)} ${year} Tournament - Photo ${index + 1}`}
-                  class="w-full h-full object-cover rounded-lg"
-                  onerror="this.style.display='none'; this.parentElement.style.background='repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px'"
-                />
-              </figure>
-            ))
-          ) : (
-            <figure class="relative h-64">
-              <div
-                class="w-full h-full rounded-lg"
-                style="background: repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px"
-              />
-            </figure>
-          )
+          imageEntries.map((image) => (
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={800}
+              height={600}
+              class="w-full h-64 object-cover rounded-lg shadow-lg"
+            />
+          ))
         }
         <div class="card bg-base-200">
           <div class="card-body">
