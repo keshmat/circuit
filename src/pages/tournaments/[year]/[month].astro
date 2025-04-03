@@ -60,7 +60,6 @@ const imageDir = join(process.cwd(), "src", "assets", `${year}-${month}`);
 let images: string[] = [];
 try {
   const files = await readdir(imageDir);
-  console.log(files);
   images = files
     .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file))
     .map((file) => `/src/assets/${year}-${month}/${file}`);
