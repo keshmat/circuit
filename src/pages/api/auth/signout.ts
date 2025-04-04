@@ -1,3 +1,5 @@
+export const prerender = false; // Not needed in 'server' mode
+
 import type { APIRoute } from "astro";
 import { supabase } from "../../../db/supabase";
 
