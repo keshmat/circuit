@@ -2,10 +2,16 @@
 import { supabase } from "../db/supabase";
 
 // Check for existing session
-const {
-  data: { session },
-} = await supabase.auth.getSession();
-const userEmail = session?.user?.email;
+let session = null;
+let userEmail = null;
+
+try {
+  const { data } = await supabase.auth.getSession();
+  session = data?.session;
+  userEmail = session?.user?.email;
+} catch (error) {
+  console.error("Error checking session:", error);
+}
 ---
 
 <div class="card bg-base-200 w-full max-w-md mx-auto">
