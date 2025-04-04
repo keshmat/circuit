@@ -44,7 +44,8 @@ on conflict (id) do nothing;
 -- Enable RLS on the receipts bucket
 update storage.buckets
 set file_size_limit = 5242880, -- 5MB
-    allowed_mime_types = array['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
+    allowed_mime_types = array['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
+    public = true
 where id = 'receipts';
 
 -- Drop existing policies if they exist

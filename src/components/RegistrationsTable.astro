@@ -1,5 +1,6 @@
 ---
 import { createClient } from "@supabase/supabase-js";
+import { Image } from "astro:assets";
 
 if (!import.meta.env.PUBLIC_SUPABASE_URL) {
   throw new Error("Missing env.PUBLIC_SUPABASE_URL");
@@ -11,8 +12,6 @@ if (!import.meta.env.PUBLIC_SUPABASE_ANON_KEY) {
 
 // Get the access token from cookies
 const accessToken = Astro.cookies.get("sb-access-token")?.value;
-console.log("All cookies:", Astro.cookies);
-console.log("Access token from cookies:", accessToken);
 
 // Initialize Supabase client with user's access token if available
 const supabase = createClient(
@@ -122,18 +121,40 @@ if (accessToken) {
                   </td>
                   <td>
                     {registration.payment_receipt_url ? (
-                      <a
-                        href={
-                          supabase.storage
-                            .from("receipts")
-                            .getPublicUrl(registration.payment_receipt_url).data
-                            .publicUrl
-                        }
-                        target="_blank"
-                        class="btn btn-sm btn-ghost"
-                      >
-                        View
-                      </a>
+                      <>
+                        <button
+                          class="btn btn-ghost btn-sm"
+                          onclick={`document.getElementById('modal-${registration.id}').showModal()`}
+                        >
+                          <Image
+                            src={`${import.meta.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/receipts/${registration.payment_receipt_url}`}
+                            alt="Receipt"
+                            width={48}
+                            height={48}
+                            class="object-cover"
+                          />
+                        </button>
+                        <dialog id={`modal-${registration.id}`} class="modal">
+                          <div class="modal-box max-w-3xl">
+                            <h3 class="font-bold text-lg mb-4">
+                              Payment Receipt
+                            </h3>
+                            <img
+                              src={`${import.meta.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/receipts/${registration.payment_receipt_url}`}
+                              alt="Receipt"
+                              class="w-full"
+                            />
+                            <div class="modal-action">
+                              <form method="dialog">
+                                <button class="btn">Close</button>
+                              </form>
+                            </div>
+                          </div>
+                          <form method="dialog" class="modal-backdrop">
+                            <button>close</button>
+                          </form>
+                        </dialog>
+                      </>
                     ) : (
                       "-"
                     )}

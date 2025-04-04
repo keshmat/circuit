@@ -6,7 +6,6 @@ import { supabase } from "../../../db/supabase";
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   try {
     const data = await request.json();
-    console.log("Received data:", data);
 
     const email = data.email;
     const otp = data.otp;
@@ -70,9 +69,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
       if (authData.session) {
         const { access_token, refresh_token } = authData.session;
-        console.log("Session data:", authData.session);
-        console.log("Access token:", access_token);
-        console.log("Refresh token:", refresh_token);
 
         // Set cookies
         cookies.set("sb-access-token", access_token, {
@@ -89,12 +85,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           httpOnly: false,
           sameSite: "lax",
           maxAge: rememberMe ? 60 * 60 * 24 * 30 : 60 * 60,
-        });
-
-        // Log the cookies that were set
-        console.log("Cookies after setting:", {
-          accessToken: cookies.get("sb-access-token")?.value,
-          refreshToken: cookies.get("sb-refresh-token")?.value,
         });
 
         // Redirect to registrations page
