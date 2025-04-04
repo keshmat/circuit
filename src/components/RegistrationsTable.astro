@@ -126,12 +126,10 @@ if (accessToken) {
                           class="btn btn-ghost btn-sm"
                           onclick={`document.getElementById('modal-${registration.id}').showModal()`}
                         >
-                          <Image
+                          <img
                             src={`${import.meta.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/receipts/${registration.payment_receipt_url}`}
                             alt="Receipt"
-                            width={48}
-                            height={48}
-                            class="object-cover"
+                            class="w-12 h-12 object-cover"
                           />
                         </button>
                         <dialog id={`modal-${registration.id}`} class="modal">
