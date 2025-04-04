@@ -6,6 +6,8 @@ create table if not exists registration_settings (
   id uuid primary key default uuid_generate_v4(),
   is_registration_open boolean default true,
   max_registrations integer,
+  registration_deadline timestamp with time zone,
+  registration_message text,
   current_registrations integer default 0,
   updated_at timestamp with time zone default now()
 );

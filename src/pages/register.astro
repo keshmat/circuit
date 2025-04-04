@@ -2,196 +2,250 @@
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../db/supabase";
 
-// Check if registration is open
+// Check registration settings
 const { data: settings } = await supabase
   .from("registration_settings")
-  .select("is_registration_open, max_registrations, current_registrations")
+  .select(
+    "is_registration_open, max_registrations, current_registrations, registration_deadline, registration_message"
+  )
   .single();
 
-if (!settings?.is_registration_open) {
-  // Redirect to closed page or show message
-}
+const now = new Date();
+const deadline = settings?.registration_deadline
+  ? new Date(settings.registration_deadline)
+  : null;
+const isRegistrationClosed =
+  !settings?.is_registration_open || (deadline && now > deadline);
+const isRegistrationFull =
+  settings?.current_registrations >= settings?.max_registrations;
 ---
 
 <Layout title="Register">
   <main class="container mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-8">Register for the Circuit</h1>
 
-    <section class="max-w-2xl mx-auto">
-      <div class="card bg-base-200">
-        <div class="card-body">
-          <form
-            id="registration-form"
-            class="space-y-6"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <input type="hidden" name="form-name" value="registration" />
-            <p class="hidden">
-              <label>
-                Don't fill this out if you're human: <input name="bot-field" />
-              </label>
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="form-control w-full">
-                <label class="label" for="first-name">
-                  <span class="label-text">First Name</span>
-                  <span class="label-text-alt text-error">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="first-name"
-                  name="first-name"
-                  class="input input-bordered w-full"
-                  required
-                />
-              </div>
-
-              <div class="form-control w-full">
-                <label class="label" for="last-name">
-                  <span class="label-text">Last Name</span>
-                  <span class="label-text-alt text-error">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="last-name"
-                  name="last-name"
-                  class="input input-bordered w-full"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-control w-full">
-              <label class="label">
-                <span class="label-text">Do you have a FIDE ID?</span>
-              </label>
-              <div class="flex gap-4">
-                <label class="label cursor-pointer gap-2">
-                  <input
-                    type="radio"
-                    name="has-fide-id"
-                    class="radio radio-primary"
-                    value="yes"
-                  />
-                  <span class="label-text">Yes</span>
-                </label>
-                <label class="label cursor-pointer gap-2">
-                  <input
-                    type="radio"
-                    name="has-fide-id"
-                    class="radio radio-primary"
-                    value="no"
-                    checked
-                  />
-                  <span class="label-text">No</span>
-                </label>
-              </div>
-            </div>
-
-            <div id="fide-id-section" class="form-control w-full hidden">
-              <label class="label" for="fide-id">
-                <span class="label-text">FIDE ID</span>
-                <span class="label-text-alt text-error">*</span>
-              </label>
-              <input
-                type="text"
-                id="fide-id"
-                name="fide-id"
-                class="input input-bordered w-full"
-                required
-              />
-            </div>
-
-            <div id="birthday-section" class="form-control w-full">
-              <label class="label" for="birthday">
-                <span class="label-text">Date of Birth</span>
-                <span class="label-text-alt text-error">*</span>
-              </label>
-              <input
-                type="date"
-                id="birthday"
-                name="birthday"
-                class="input input-bordered w-full"
-                required
-              />
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="form-control w-full">
-                <label class="label" for="email">
-                  <span class="label-text">Email</span>
-                  <span class="label-text-alt text-error">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="input input-bordered w-full"
-                  required
-                />
-              </div>
-
-              <div class="form-control w-full">
-                <label class="label" for="phone">
-                  <span class="label-text">Phone Number</span>
-                  <span class="label-text-alt text-error">*</span>
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  class="input input-bordered w-full"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-control w-full">
-              <label class="label" for="payment-receipt">
-                <span class="label-text">Payment Receipt</span>
-                <span class="label-text-alt text-error">*</span>
-              </label>
-              <input
-                type="file"
-                id="payment-receipt"
-                name="payment-receipt"
-                class="file-input file-input-bordered w-full"
-                accept="image/*"
-                required
-              />
-              <div class="mt-2 text-sm text-gray-500">
-                To confirm your registration, pay your fees via OMT Wallet to
-                71/818322 (MARC-ANWAR FARRA) and attach the receipt below.
-              </div>
-            </div>
-
-            <div class="form-control">
-              <label for="rules-agreement" class="label cursor-pointer">
-                <span class="label-text"
-                  >I agree to the tournament rules and regulations</span
-                >
-                <span class="label-text-alt text-error">*</span>
-              </label>
-              <input
-                type="checkbox"
-                id="rules-agreement"
-                name="rules-agreement"
-                class="checkbox checkbox-primary"
-                required
-              />
-            </div>
-
-            <div class="card-actions justify-end">
-              <button type="submit" class="btn btn-primary"
-                >Submit Registration</button
-              >
-            </div>
-          </form>
+    {
+      settings?.registration_message && (
+        <div class="alert alert-info mb-8">
+          <div class="flex-1">
+            <p>{settings.registration_message}</p>
+          </div>
         </div>
-      </div>
-    </section>
+      )
+    }
+
+    {
+      isRegistrationClosed ? (
+        <div class="alert alert-error mb-8">
+          <div class="flex-1">
+            <p>
+              Registration is currently closed.
+              {deadline && now > deadline && (
+                <span>
+                  {" "}
+                  The registration deadline was {deadline.toLocaleString()}.
+                </span>
+              )}
+            </p>
+          </div>
+        </div>
+      ) : isRegistrationFull ? (
+        <div class="alert alert-error mb-8">
+          <div class="flex-1">
+            <p>
+              Registration is full. The maximum number of registrations (
+              {settings?.max_registrations}) has been reached.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <section class="max-w-2xl mx-auto">
+          <div class="card bg-base-200">
+            <div class="card-body">
+              {deadline && (
+                <div class="alert alert-warning mb-4">
+                  <div class="flex-1">
+                    <p>Registration closes on {deadline.toLocaleString()}</p>
+                  </div>
+                </div>
+              )}
+
+              <form
+                id="registration-form"
+                class="space-y-6"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <input type="hidden" name="form-name" value="registration" />
+                <p class="hidden">
+                  <label>
+                    Don't fill this out if you're human:{" "}
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="form-control w-full">
+                    <label class="label" for="first-name">
+                      <span class="label-text">First Name</span>
+                      <span class="label-text-alt text-error">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="first-name"
+                      name="first-name"
+                      class="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-control w-full">
+                    <label class="label" for="last-name">
+                      <span class="label-text">Last Name</span>
+                      <span class="label-text-alt text-error">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="last-name"
+                      name="last-name"
+                      class="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-control w-full">
+                  <label class="label">
+                    <span class="label-text">Do you have a FIDE ID?</span>
+                  </label>
+                  <div class="flex gap-4">
+                    <label class="label cursor-pointer gap-2">
+                      <input
+                        type="radio"
+                        name="has-fide-id"
+                        class="radio radio-primary"
+                        value="yes"
+                      />
+                      <span class="label-text">Yes</span>
+                    </label>
+                    <label class="label cursor-pointer gap-2">
+                      <input
+                        type="radio"
+                        name="has-fide-id"
+                        class="radio radio-primary"
+                        value="no"
+                        checked
+                      />
+                      <span class="label-text">No</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="fide-id-section" class="form-control w-full hidden">
+                  <label class="label" for="fide-id">
+                    <span class="label-text">FIDE ID</span>
+                    <span class="label-text-alt text-error">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fide-id"
+                    name="fide-id"
+                    class="input input-bordered w-full"
+                    required
+                  />
+                </div>
+
+                <div id="birthday-section" class="form-control w-full">
+                  <label class="label" for="birthday">
+                    <span class="label-text">Date of Birth</span>
+                    <span class="label-text-alt text-error">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="birthday"
+                    name="birthday"
+                    class="input input-bordered w-full"
+                    required
+                  />
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="form-control w-full">
+                    <label class="label" for="email">
+                      <span class="label-text">Email</span>
+                      <span class="label-text-alt text-error">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-control w-full">
+                    <label class="label" for="phone">
+                      <span class="label-text">Phone Number</span>
+                      <span class="label-text-alt text-error">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-control w-full">
+                  <label class="label" for="payment-receipt">
+                    <span class="label-text">Payment Receipt</span>
+                    <span class="label-text-alt text-error">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="payment-receipt"
+                    name="payment-receipt"
+                    class="file-input file-input-bordered w-full"
+                    accept="image/*"
+                    required
+                  />
+                  <div class="mt-2 text-sm text-gray-500">
+                    To confirm your registration, pay your fees via OMT Wallet
+                    to 71/818322 (MARC-ANWAR FARRA) and attach the receipt
+                    below.
+                  </div>
+                </div>
+
+                <div class="form-control">
+                  <label for="rules-agreement" class="label cursor-pointer">
+                    <span class="label-text">
+                      I agree to the tournament rules and regulations
+                    </span>
+                    <span class="label-text-alt text-error">*</span>
+                  </label>
+                  <input
+                    type="checkbox"
+                    id="rules-agreement"
+                    name="rules-agreement"
+                    class="checkbox checkbox-primary"
+                    required
+                  />
+                </div>
+
+                <div class="card-actions justify-end">
+                  <button type="submit" class="btn btn-primary">
+                    Submit Registration
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      )
+    }
   </main>
 </Layout>
 
