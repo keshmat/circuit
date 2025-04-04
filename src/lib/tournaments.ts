@@ -106,7 +106,7 @@ export async function getTournamentCardImages() {
     const key = `${year}-${month}`;
     try {
       // Dynamically import the image
-      imageImports[key] = import(`/src/assets/${year}-${month}/card.jpg`);
+      imageImports[key] = import(`../assets/${year}-${month}/card.jpg`);
     } catch (error) {
       console.warn(`Could not import card image for ${key}`);
     }
