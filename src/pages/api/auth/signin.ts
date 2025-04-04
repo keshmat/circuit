@@ -17,6 +17,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         status: 400,
         headers: {
           "Content-Type": "application/json",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       });
     }
@@ -39,6 +43,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           status: 500,
           headers: {
             "Content-Type": "application/json",
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
           },
         });
       }
@@ -47,6 +55,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         status: 200,
         headers: {
           "Content-Type": "application/json",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       });
     } else {
@@ -63,6 +75,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           status: 500,
           headers: {
             "Content-Type": "application/json",
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
           },
         });
       }
@@ -74,16 +90,16 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         cookies.set("sb-access-token", access_token, {
           path: "/",
           secure: true,
-          httpOnly: false,
-          sameSite: "lax",
+          httpOnly: true,
+          sameSite: "strict",
           maxAge: rememberMe ? 60 * 60 * 24 * 30 : 60 * 60,
         });
 
         cookies.set("sb-refresh-token", refresh_token, {
           path: "/",
           secure: true,
-          httpOnly: false,
-          sameSite: "lax",
+          httpOnly: true,
+          sameSite: "strict",
           maxAge: rememberMe ? 60 * 60 * 24 * 30 : 60 * 60,
         });
 
@@ -98,6 +114,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           status: 500,
           headers: {
             "Content-Type": "application/json",
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
           },
         }
       );
@@ -110,6 +130,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         status: 500,
         headers: {
           "Content-Type": "application/json",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       }
     );
