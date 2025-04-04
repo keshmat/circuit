@@ -1,13 +1,14 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+export const prerender = false;
+import AdminLayout from "../../layouts/AdminLayout.astro";
 import Auth from "../../components/Auth.astro";
 ---
 
-<Layout title="Login">
+<AdminLayout title="Login">
   <main class="container mx-auto px-4 py-8">
     <div class="max-w-md mx-auto">
       <h1 class="text-4xl font-bold mb-8 text-center">Admin Login</h1>
-      <Auth client:load />
+      <Auth />
     </div>
   </main>
-</Layout>
+</AdminLayout>

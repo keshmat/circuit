@@ -186,28 +186,22 @@ try {
             }),
           });
 
-          const responseData = await response.json();
-          console.log("Verification response:", responseData);
-
           if (!response.ok) {
-            throw new Error(responseData.message || "Verification failed");
+            const responseData = await response.json();
+            throw new Error(responseData.error || "Verification failed");
           }
 
-          // Show success notification
-          const notification = document.createElement("div");
-          notification.className = "toast toast-top toast-end";
-          notification.innerHTML = `
-            <div class="alert alert-success">
-              <span>Login successful! Redirecting...</span>
+          // Show success message and button
+          form.innerHTML = `
+            <div class="text-center space-y-4">
+              <div class="alert alert-success">
+                <span>Login successful!</span>
+              </div>
+              <a href="/admin/registrations" class="btn btn-primary w-full">
+                Go to Registrations
+              </a>
             </div>
           `;
-          document.body.appendChild(notification);
-          setTimeout(() => notification.remove(), 3000);
-
-          // Redirect after a short delay
-          setTimeout(() => {
-            window.location.href = "/admin/registrations";
-          }, 1000);
         } else {
           // Send OTP
           console.log("Sending OTP to email:", email);
@@ -222,11 +216,9 @@ try {
             }),
           });
 
-          const responseData = await response.json();
-          console.log("OTP send response:", responseData);
-
           if (!response.ok) {
-            throw new Error(responseData.message || "Failed to send OTP");
+            const responseData = await response.json();
+            throw new Error(responseData.error || "Failed to send OTP");
           }
 
           // Store the email for verification

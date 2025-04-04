@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+import keshmatLogo from "../assets/keshmat-logo.png";
+import { supabase } from "../db/supabase";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+// Check for existing session
+let session = null;
+try {
+  const { data } = await supabase.auth.getSession();
+  session = data?.session;
+} catch (error) {
+  console.error("Error checking session:", error);
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Keshmat Chess Circuit Admin</title>
+  </head>
+  <body>
+    <div class="min-h-screen bg-base-100">
+      <div class="navbar w-full px-4">
+        <div class="navbar-start">
+          <div class="flex items-center gap-2">
+            <img
+              src={keshmatLogo.src}
+              alt="Keshmat Logo"
+              class="w-10 sm:w-12 md:w-14 lg:w-16"
+            />
+            <a href="/admin" class="btn btn-ghost text-lg sm:text-xl p-1">
+              Keshmat Admin
+            </a>
+          </div>
+        </div>
+        <div class="navbar-end">
+          {
+            session ? (
+              <>
+                <a href="/admin/registrations" class="btn btn-ghost">
+                  Registrations
+                </a>
+                <a href="/admin/login" class="btn btn-ghost">
+                  Logout
+                </a>
+              </>
+            ) : (
+              <a href="/admin/login" class="btn btn-ghost">
+                Login
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

@@ -61,54 +61,7 @@ drop policy if exists "Allow authenticated read on receipts bucket" on storage.o
 -- Re-enable RLS on registrations table
 alter table registrations enable row level security;
 
--- Create a single basic policy for registrations
-create policy "Enable insert for all users"
-  on registrations
-  for insert
-  to anon, authenticated
-  with check (true);
-
--- Allow anonymous users to read registration settings
-create policy "Allow anon read on registration_settings"
-  on registration_settings
-  for select
-  to anon
-  using (true);
-
--- Allow authenticated users to update registration settings
-create policy "Allow authenticated update on registration_settings"
-  on registration_settings
-  for update
-  to authenticated
-  using (true);
-
--- Initial setup
--- 1. Create the tables using the SQL above
--- 2. Create a 'receipts' bucket in Supabase Storage
--- 3. Set up RLS (Row Level Security) policies if needed
--- 4. Insert initial settings record if it doesn't exist
-insert into registration_settings (max_registrations)
-select 100
-where not exists (select 1 from registration_settings);
-
--- Storage bucket policy
-create policy "Allow anon uploads to receipts bucket"
-  on storage.objects
-  for insert
-  to anon
-  with check (bucket_id = 'receipts');
-
--- Allow authenticated users to read receipts
-create policy "Allow authenticated read on receipts bucket"
-  on storage.objects
-  for select
-  to authenticated
-  using (bucket_id = 'receipts');
-
--- Environment Variables Required
--- PUBLIC_SUPABASE_URL=your_supabase_url
--- PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-
+-- Registration Policies
 -- Allow public to insert registrations
 create policy "Allow public to insert registrations"
   on registrations for insert
@@ -133,6 +86,7 @@ create policy "Allow authenticated users to delete registrations"
   to authenticated
   using (true);
 
+-- Registration Settings Policies
 -- Allow public to read registration settings
 create policy "Allow public to read registration settings"
   on registration_settings for select
@@ -145,10 +99,7 @@ create policy "Allow authenticated users to update registration settings"
   to authenticated
   using (true);
 
--- Create storage bucket for receipts
-insert into storage.buckets (id, name, public)
-values ('receipts', 'receipts', true);
-
+-- Storage Policies
 -- Allow public uploads to receipts bucket
 create policy "Allow public uploads to receipts"
   on storage.objects for insert
@@ -159,4 +110,14 @@ create policy "Allow public uploads to receipts"
 create policy "Allow public reads from receipts"
   on storage.objects for select
   to anon, authenticated
-  using (bucket_id = 'receipts'); 
+  using (bucket_id = 'receipts');
+
+-- Initial setup
+-- Insert initial settings record if it doesn't exist
+insert into registration_settings (max_registrations)
+select 100
+where not exists (select 1 from registration_settings);
+
+-- Environment Variables Required
+-- PUBLIC_SUPABASE_URL=your_supabase_url
+-- PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key 

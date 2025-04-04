@@ -1,0 +1,56 @@
+---
+export const prerender = false;
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { requireAuth } from "../../lib/auth";
+
+// Check authentication
+const redirect = requireAuth(Astro);
+if (redirect) {
+  return redirect;
+}
+---
+
+<AdminLayout title="Dashboard">
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">Admin Dashboard</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h2 class="card-title">Registrations</h2>
+            <p>Manage player registrations and view registration status</p>
+            <div class="card-actions justify-end">
+              <a href="/admin/registrations" class="btn btn-primary"
+                >View Registrations</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h2 class="card-title">Settings</h2>
+            <p>Configure tournament settings and registration limits</p>
+            <div class="card-actions justify-end">
+              <a href="/admin/settings" class="btn btn-primary">View Settings</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body">
+          <h2 class="card-title">Quick Actions</h2>
+          <div class="flex flex-wrap gap-4">
+            <a href="/admin/registrations" class="btn btn-ghost"
+              >View Registrations</a
+            >
+            <a href="/admin/login" class="btn btn-ghost">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</AdminLayout>

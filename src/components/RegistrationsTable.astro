@@ -9,16 +9,24 @@ if (!import.meta.env.PUBLIC_SUPABASE_ANON_KEY) {
   throw new Error("Missing env.PUBLIC_SUPABASE_ANON_KEY");
 }
 
+// Get the access token from cookies
+const accessToken = Astro.cookies.get("sb-access-token")?.value;
+console.log("All cookies:", Astro.cookies);
+console.log("Access token from cookies:", accessToken);
+
+// Initialize Supabase client with user's access token if available
 const supabase = createClient(
   import.meta.env.PUBLIC_SUPABASE_URL,
   import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: true,
-    },
-  }
+  accessToken
+    ? {
+        global: {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      }
+    : undefined
 );
 
 interface Registration {
@@ -34,106 +42,120 @@ interface Registration {
   created_at: string;
 }
 
-// Fetch registrations
-const { data: registrations, error } = await supabase
-  .from("registrations")
-  .select("*")
-  .order("created_at", { ascending: false });
+// Only fetch registrations if we have an access token
+let registrations: Registration[] | null = null;
+let error = null;
 
-if (error) {
-  console.error("Error fetching registrations:", error);
+if (accessToken) {
+  const result = await supabase
+    .from("registrations")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  registrations = result.data;
+  error = result.error;
 }
 ---
 
 <div class="card bg-base-200">
   <div class="card-body">
-    <div class="overflow-x-auto">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>FIDE ID</th>
-            <th>Birthday</th>
-            <th>Status</th>
-            <th>Receipt</th>
-            <th>Registered</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            registrations?.map((registration: Registration) => (
+    {
+      !accessToken ? (
+        <div class="text-center">
+          <p class="text-error">Please log in to view registrations</p>
+        </div>
+      ) : error ? (
+        <div class="text-center">
+          <p class="text-error">Error loading registrations</p>
+        </div>
+      ) : (
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
               <tr>
-                <td>
-                  {registration.first_name} {registration.last_name}
-                </td>
-                <td>{registration.email}</td>
-                <td>{registration.phone}</td>
-                <td>{registration.fide_id || "-"}</td>
-                <td>{registration.birthday || "-"}</td>
-                <td>
-                  <select
-                    class="select select-bordered select-sm"
-                    data-id={registration.id}
-                    data-status={registration.status}
-                  >
-                    <option
-                      value="pending"
-                      selected={registration.status === "pending"}
-                    >
-                      Pending
-                    </option>
-                    <option
-                      value="confirmed"
-                      selected={registration.status === "confirmed"}
-                    >
-                      Confirmed
-                    </option>
-                    <option
-                      value="waitlisted"
-                      selected={registration.status === "waitlisted"}
-                    >
-                      Waitlisted
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  {registration.payment_receipt_url ? (
-                    <a
-                      href={
-                        supabase.storage
-                          .from("receipts")
-                          .getPublicUrl(registration.payment_receipt_url).data
-                          .publicUrl
-                      }
-                      target="_blank"
-                      class="btn btn-sm btn-ghost"
-                    >
-                      View
-                    </a>
-                  ) : (
-                    "-"
-                  )}
-                </td>
-                <td>
-                  {new Date(registration.created_at).toLocaleDateString()}
-                </td>
-                <td>
-                  <button
-                    class="btn btn-sm btn-error"
-                    data-id={registration.id}
-                  >
-                    Delete
-                  </button>
-                </td>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>FIDE ID</th>
+                <th>Birthday</th>
+                <th>Status</th>
+                <th>Receipt</th>
+                <th>Registered</th>
+                <th>Actions</th>
               </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody>
+              {registrations?.map((registration: Registration) => (
+                <tr>
+                  <td>
+                    {registration.first_name} {registration.last_name}
+                  </td>
+                  <td>{registration.email}</td>
+                  <td>{registration.phone}</td>
+                  <td>{registration.fide_id || "-"}</td>
+                  <td>{registration.birthday || "-"}</td>
+                  <td>
+                    <select
+                      class="select select-bordered select-sm"
+                      data-id={registration.id}
+                      data-status={registration.status}
+                    >
+                      <option
+                        value="pending"
+                        selected={registration.status === "pending"}
+                      >
+                        Pending
+                      </option>
+                      <option
+                        value="confirmed"
+                        selected={registration.status === "confirmed"}
+                      >
+                        Confirmed
+                      </option>
+                      <option
+                        value="waitlisted"
+                        selected={registration.status === "waitlisted"}
+                      >
+                        Waitlisted
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    {registration.payment_receipt_url ? (
+                      <a
+                        href={
+                          supabase.storage
+                            .from("receipts")
+                            .getPublicUrl(registration.payment_receipt_url).data
+                            .publicUrl
+                        }
+                        target="_blank"
+                        class="btn btn-sm btn-ghost"
+                      >
+                        View
+                      </a>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td>
+                    {new Date(registration.created_at).toLocaleDateString()}
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-error"
+                      data-id={registration.id}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
   </div>
 </div>
 
