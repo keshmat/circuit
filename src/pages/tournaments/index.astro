@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { getTournamentLinks } from "../../lib/tournaments";
 const tournamentLinks = await getTournamentLinks();
 ---
@@ -18,11 +19,12 @@ const tournamentLinks = await getTournamentLinks();
               class="card bg-base-200 hover:bg-base-300 transition-colors overflow-hidden"
             >
               <figure class="relative h-64">
-                <img
+                <Image
                   src={imagePath}
                   alt={`${tournament.displayName} tournament`}
                   class="w-full h-full object-cover"
-                  onerror="this.style.display='none'; this.parentElement.style.background='repeating-conic-gradient(var(--color-base-300) 0% 25%, transparent 0% 50%) 25% / 200px 100px'"
+                  width={400}
+                  height={256}
                 />
               </figure>
               <div class="card-body">
