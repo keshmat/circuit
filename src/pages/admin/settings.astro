@@ -2,6 +2,13 @@
 export const prerender = false;
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import { supabase } from "../../db/supabase";
+import { requireAuth } from "../../lib/auth";
+
+// Check authentication
+const redirect = requireAuth(Astro);
+if (redirect) {
+  return redirect;
+}
 
 // Fetch current settings
 const { data: settings, error } = await supabase
