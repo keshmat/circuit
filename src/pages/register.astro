@@ -1,5 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { supabase } from "../db/supabase";
+
+// Check if registration is open
+const { data: settings } = await supabase
+  .from("registration_settings")
+  .select("is_registration_open, max_registrations, current_registrations")
+  .single();
+
+if (!settings?.is_registration_open) {
+  // Redirect to closed page or show message
+}
 ---
 
 <Layout title="Register">
@@ -9,101 +20,167 @@ import Layout from "../layouts/Layout.astro";
     <section class="max-w-2xl mx-auto">
       <div class="card bg-base-200">
         <div class="card-body">
-          <form class="space-y-6">
-            <div class="form-control">
-              <label class="label" for="name">
-                <span class="label-text">Full Name</span>
-                <span class="label-text-alt">Required</span>
+          <form
+            id="registration-form"
+            class="space-y-6"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <input type="hidden" name="form-name" value="registration" />
+            <p class="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="input input-bordered"
-                required
-              />
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="form-control w-full">
+                <label class="label" for="first-name">
+                  <span class="label-text">First Name</span>
+                  <span class="label-text-alt text-error">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+
+              <div class="form-control w-full">
+                <label class="label" for="last-name">
+                  <span class="label-text">Last Name</span>
+                  <span class="label-text-alt text-error">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
             </div>
 
-            <div class="form-control">
-              <label class="label" for="federation">
-                <span class="label-text">Federation</span>
-                <span class="label-text-alt">Optional</span>
+            <div class="form-control w-full">
+              <label class="label">
+                <span class="label-text">Do you have a FIDE ID?</span>
               </label>
-              <input
-                type="text"
-                id="federation"
-                name="federation"
-                class="input input-bordered"
-              />
+              <div class="flex gap-4">
+                <label class="label cursor-pointer gap-2">
+                  <input
+                    type="radio"
+                    name="has-fide-id"
+                    class="radio radio-primary"
+                    value="yes"
+                  />
+                  <span class="label-text">Yes</span>
+                </label>
+                <label class="label cursor-pointer gap-2">
+                  <input
+                    type="radio"
+                    name="has-fide-id"
+                    class="radio radio-primary"
+                    value="no"
+                    checked
+                  />
+                  <span class="label-text">No</span>
+                </label>
+              </div>
             </div>
 
-            <div class="form-control">
+            <div id="fide-id-section" class="form-control w-full hidden">
               <label class="label" for="fide-id">
                 <span class="label-text">FIDE ID</span>
-                <span class="label-text-alt">Optional</span>
+                <span class="label-text-alt text-error">*</span>
               </label>
               <input
                 type="text"
                 id="fide-id"
                 name="fide-id"
-                class="input input-bordered"
-              />
-            </div>
-
-            <div class="form-control">
-              <label class="label" for="email">
-                <span class="label-text">Email</span>
-                <span class="label-text-alt">Required</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="input input-bordered"
+                class="input input-bordered w-full"
                 required
               />
             </div>
 
-            <div class="form-control">
-              <label class="label" for="phone">
-                <span class="label-text">Phone Number</span>
-                <span class="label-text-alt">Required</span>
+            <div id="birthday-section" class="form-control w-full">
+              <label class="label" for="birthday">
+                <span class="label-text">Date of Birth</span>
+                <span class="label-text-alt text-error">*</span>
               </label>
               <input
-                type="tel"
-                id="phone"
-                name="phone"
-                class="input input-bordered"
+                type="date"
+                id="birthday"
+                name="birthday"
+                class="input input-bordered w-full"
                 required
               />
             </div>
 
-            <div class="form-control">
-              <label class="label" for="rating">
-                <span class="label-text">Current Rating</span>
-                <span class="label-text-alt">Optional</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="form-control w-full">
+                <label class="label" for="email">
+                  <span class="label-text">Email</span>
+                  <span class="label-text-alt text-error">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+
+              <div class="form-control w-full">
+                <label class="label" for="phone">
+                  <span class="label-text">Phone Number</span>
+                  <span class="label-text-alt text-error">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-control w-full">
+              <label class="label" for="payment-receipt">
+                <span class="label-text">Payment Receipt</span>
+                <span class="label-text-alt text-error">*</span>
               </label>
               <input
-                type="number"
-                id="rating"
-                name="rating"
-                class="input input-bordered"
-                min="0"
-                max="3000"
+                type="file"
+                id="payment-receipt"
+                name="payment-receipt"
+                class="file-input file-input-bordered w-full"
+                accept="image/*"
+                required
               />
+              <div class="mt-2 text-sm text-gray-500">
+                To confirm your registration, pay your fees via OMT Wallet to
+                71/818322 (MARC-ANWAR FARRA) and attach the receipt below.
+              </div>
             </div>
 
             <div class="form-control">
-              <label class="label cursor-pointer">
+              <label for="rules-agreement" class="label cursor-pointer">
                 <span class="label-text"
                   >I agree to the tournament rules and regulations</span
                 >
-                <input
-                  type="checkbox"
-                  class="checkbox checkbox-primary"
-                  required
-                />
+                <span class="label-text-alt text-error">*</span>
               </label>
+              <input
+                type="checkbox"
+                id="rules-agreement"
+                name="rules-agreement"
+                class="checkbox checkbox-primary"
+                required
+              />
             </div>
 
             <div class="card-actions justify-end">
@@ -118,3 +195,7 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
+<script>
+  import { initRegistrationForm } from "../scripts/register";
+  initRegistrationForm();
+</script>

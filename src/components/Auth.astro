@@ -1,0 +1,262 @@
+---
+import { supabase } from "../db/supabase";
+
+// Check for existing session
+const {
+  data: { session },
+} = await supabase.auth.getSession();
+const userEmail = session?.user?.email;
+---
+
+<div class="card bg-base-200 w-full max-w-md mx-auto">
+  <div class="card-body">
+    {
+      userEmail ? (
+        <>
+          <h2 class="card-title">Welcome</h2>
+          <p>Signed in as {userEmail}</p>
+          <div class="card-actions justify-end mt-6">
+            <form id="signout-form" action="/api/auth/signout" method="POST">
+              <button type="submit" class="btn btn-primary w-full">
+                Sign Out
+              </button>
+            </form>
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 class="card-title">Admin Login</h2>
+          <form id="auth-form" class="space-y-6">
+            <div class="form-control w-full">
+              <label class="label" for="email">
+                <span class="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+
+            <div id="otp-section" class="form-control w-full hidden">
+              <label class="label" for="otp">
+                <span class="label-text">One-Time Password</span>
+              </label>
+              <input
+                type="text"
+                id="otp"
+                name="otp"
+                class="input input-bordered w-full"
+                placeholder="Enter the 6-digit code"
+                pattern="[0-9]{6}"
+                maxlength="6"
+              />
+            </div>
+
+            <div class="form-control">
+              <label class="label cursor-pointer justify-start gap-2">
+                <input
+                  type="checkbox"
+                  id="remember-me"
+                  name="remember-me"
+                  class="checkbox checkbox-primary"
+                />
+                <span class="label-text">Remember me for 30 days</span>
+              </label>
+            </div>
+
+            <div class="card-actions justify-end mt-6">
+              <button
+                type="submit"
+                id="submit-button"
+                class="btn btn-primary w-full"
+              >
+                Send Code
+              </button>
+            </div>
+          </form>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("auth-form") as HTMLFormElement;
+  const signoutForm = document.getElementById(
+    "signout-form"
+  ) as HTMLFormElement;
+  const otpSection = document.getElementById("otp-section") as HTMLDivElement;
+  const submitButton = document.getElementById(
+    "submit-button"
+  ) as HTMLButtonElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const otpInput = document.getElementById("otp") as HTMLInputElement;
+  const rememberMe = document.getElementById("remember-me") as HTMLInputElement;
+  let currentEmail = "";
+
+  if (signoutForm) {
+    signoutForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch("/api/auth/signout", {
+          method: "POST",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to sign out");
+        }
+
+        // Redirect to login page
+        window.location.href = "/admin/login";
+      } catch (error) {
+        console.error("Error signing out:", error);
+        const notification = document.createElement("div");
+        notification.className = "toast toast-top toast-end";
+        notification.innerHTML = `
+          <div class="alert alert-error">
+            <span>Failed to sign out. Please try again.</span>
+          </div>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+      }
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Debug: Log the raw form data
+      const formData = new FormData(form);
+      console.log("Raw form data entries:");
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      // Get form values
+      const email = emailInput.value.trim();
+      const otp = otpInput.value.trim();
+      const rememberMeValue = rememberMe.checked;
+
+      console.log("Form values:", {
+        email,
+        otp,
+        rememberMe: rememberMeValue,
+        emailInputValue: emailInput.value,
+        emailInputType: typeof emailInput.value,
+      });
+
+      if (!email) {
+        console.error("Email is empty or null");
+        const notification = document.createElement("div");
+        notification.className = "toast toast-top toast-end";
+        notification.innerHTML = `
+          <div class="alert alert-error">
+            <span>Please enter your email address</span>
+          </div>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+        return;
+      }
+
+      try {
+        if (!otpSection.classList.contains("hidden")) {
+          // Verify OTP - use the stored email
+          console.log("Verifying OTP with email:", currentEmail);
+          const response = await fetch("/api/auth/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: currentEmail,
+              otp,
+              "remember-me": rememberMeValue,
+            }),
+          });
+
+          const responseData = await response.json();
+          console.log("Verification response:", responseData);
+
+          if (!response.ok) {
+            throw new Error(responseData.message || "Verification failed");
+          }
+
+          // Show success notification
+          const notification = document.createElement("div");
+          notification.className = "toast toast-top toast-end";
+          notification.innerHTML = `
+            <div class="alert alert-success">
+              <span>Login successful! Redirecting...</span>
+            </div>
+          `;
+          document.body.appendChild(notification);
+          setTimeout(() => notification.remove(), 3000);
+
+          // Redirect after a short delay
+          setTimeout(() => {
+            window.location.href = "/admin/registrations";
+          }, 1000);
+        } else {
+          // Send OTP
+          console.log("Sending OTP to email:", email);
+          const response = await fetch("/api/auth/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              "remember-me": rememberMeValue,
+            }),
+          });
+
+          const responseData = await response.json();
+          console.log("OTP send response:", responseData);
+
+          if (!response.ok) {
+            throw new Error(responseData.message || "Failed to send OTP");
+          }
+
+          // Store the email for verification
+          currentEmail = email;
+          console.log("Stored email for verification:", currentEmail);
+
+          // Show OTP input
+          otpSection.classList.remove("hidden");
+          emailInput.disabled = true;
+          submitButton.textContent = "Verify Code";
+          otpInput.required = true;
+
+          // Show success notification
+          const notification = document.createElement("div");
+          notification.className = "toast toast-top toast-end";
+          notification.innerHTML = `
+            <div class="alert alert-success">
+              <span>Verification code sent to your email</span>
+            </div>
+          `;
+          document.body.appendChild(notification);
+          setTimeout(() => notification.remove(), 3000);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        // Show error notification
+        const notification = document.createElement("div");
+        notification.className = "toast toast-top toast-end";
+        notification.innerHTML = `
+          <div class="alert alert-error">
+            <span>${error instanceof Error ? error.message : "An error occurred"}</span>
+          </div>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+      }
+    });
+  }
+</script>
