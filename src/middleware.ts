@@ -4,14 +4,15 @@ import { supabase } from "./db/supabase";
 export const onRequest = defineMiddleware(
   async ({ request, cookies, redirect }, next) => {
     const url = new URL(request.url);
+    const pathname = url.pathname;
 
     // Skip auth check for login page and API routes
-    if (url.pathname === "/admin/login" || url.pathname.startsWith("/api/")) {
+    if (pathname === "/admin/login" || pathname.startsWith("/api/")) {
       return next();
     }
 
     // Skip auth check for non-admin routes
-    if (!url.pathname.startsWith("/admin/")) {
+    if (!pathname.startsWith("/admin/")) {
       return next();
     }
 
