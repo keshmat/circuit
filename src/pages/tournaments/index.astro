@@ -1,8 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import { getTournamentLinks } from "../../lib/tournaments";
+import {
+  getTournamentLinks,
+  getTournamentCardImages,
+} from "../../lib/tournaments";
+
 const tournamentLinks = await getTournamentLinks();
+const cardImages = await getTournamentCardImages();
 ---
 
 <Layout title="Tournaments">
@@ -12,20 +17,27 @@ const tournamentLinks = await getTournamentLinks();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         tournamentLinks.map((tournament) => {
-          const imagePath = `/src/assets/${tournament.year}-${tournament.month}/card.jpg`;
+          const imageKey = `${tournament.year}-${tournament.month}`;
+          const image = cardImages[imageKey];
           return (
             <a
               href={tournament.url}
               class="card bg-base-200 hover:bg-base-300 transition-colors overflow-hidden"
             >
               <figure class="relative h-64">
-                <Image
-                  src={imagePath}
-                  alt={`${tournament.displayName} tournament`}
-                  class="w-full h-full object-cover"
-                  width={400}
-                  height={256}
-                />
+                {image ? (
+                  <Image
+                    src={image}
+                    alt={`${tournament.displayName} tournament`}
+                    class="w-full h-full object-cover"
+                    width={400}
+                    height={256}
+                  />
+                ) : (
+                  <div class="w-full h-full bg-base-300 flex items-center justify-center">
+                    <span class="text-base-content/50">No image available</span>
+                  </div>
+                )}
               </figure>
               <div class="card-body">
                 <h2 class="card-title">{tournament.displayName}</h2>

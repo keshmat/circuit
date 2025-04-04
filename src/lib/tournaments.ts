@@ -1,4 +1,5 @@
 import { getDb } from "./db";
+import type { ImageMetadata } from "astro";
 
 /**
  * Represents a tournament link in the navigation menu
@@ -92,4 +93,35 @@ export async function getStaticPathsForTournaments() {
     },
     props: { year, month },
   }));
+}
+
+/**
+ * Dynamically imports all tournament card images
+ */
+export async function getTournamentCardImages() {
+  const data = await getTournamentNavigationData();
+  const imageImports: Record<string, Promise<{ default: ImageMetadata }>> = {};
+
+  for (const { year, month } of data) {
+    const key = `${year}-${month}`;
+    try {
+      // Dynamically import the image
+      imageImports[key] = import(`/src/assets/${year}-${month}/card.jpg`);
+    } catch (error) {
+      console.warn(`Could not import card image for ${key}`);
+    }
+  }
+
+  // Wait for all imports to complete
+  const resolvedImages: Record<string, ImageMetadata> = {};
+  for (const [key, importPromise] of Object.entries(imageImports)) {
+    try {
+      const module = await importPromise;
+      resolvedImages[key] = module.default;
+    } catch (error) {
+      console.warn(`Failed to resolve image for ${key}`);
+    }
+  }
+
+  return resolvedImages;
 }
