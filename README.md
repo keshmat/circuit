@@ -1,48 +1,104 @@
-# Astro Starter Kit: Basics
+# Circuit
 
-```sh
-npm create astro@latest -- --template basics
+A modern web application built with Astro, featuring data processing capabilities, SQLite integration, and a beautiful UI powered by Tailwind CSS and DaisyUI.
+
+## 🚀 Features
+
+- **Modern Stack**: Built with Astro, Tailwind CSS, and DaisyUI for a fast and responsive experience
+- **Data Processing**: Support for CSV and Excel file processing
+- **Database Integration**: SQLite integration for data storage
+- **File Upload**: Tus protocol support for reliable file uploads
+- **Markdown Support**: Built-in markdown processing capabilities
+- **Deployment Ready**: Configured for Netlify deployment
+
+## 📦 Prerequisites
+
+- Node.js (v18 or later recommended)
+- npm (v9 or later recommended)
+
+## 🛠️ Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/keshmat/circuit.git
+cd circuit
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+2. Install dependencies:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+npm install
+```
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+3. Start the development server:
 
-## 🚀 Project Structure
+```bash
+npm run dev
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+The application will be available at `http://localhost:4321`
 
-```text
+## 🏗️ Project Structure
+
+```
 /
-├── public/
-│   └── favicon.svg
+├── public/          # Static assets
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # Reusable UI components
+│   ├── layouts/     # Page layouts
+│   ├── pages/       # Astro pages
+│   └── styles/      # Global styles
+├── package.json     # Project dependencies and scripts
+└── tsconfig.json    # TypeScript configuration
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📋 Available Scripts
 
-## 🧞 Commands
+| Command           | Description                      |
+| ----------------- | -------------------------------- |
+| `npm run dev`     | Start development server         |
+| `npm run build`   | Build for production             |
+| `npm run preview` | Preview production build locally |
+| `npm run astro`   | Run Astro CLI commands           |
 
-All commands are run from the root of the project, from a terminal:
+## 🔧 Configuration
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The project uses several key technologies:
 
-## 👀 Want to learn more?
+- **Astro**: For building fast, content-focused websites
+- **Tailwind CSS**: For utility-first styling
+- **DaisyUI**: For beautiful UI components
+- **SQLite**: For data storage
+- **Supabase**: For backend services
+- **Tus**: For reliable file uploads
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📊 Data Processing
+
+For data processing scripts and utilities, please refer to the `/scripts/` directory. This directory contains:
+
+- Data transformation scripts for `chess-results` cross tables
+- CLI for generating reports
+- Database generation scripts
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to contribute:
+
+1. Fork the repository
+2. Create a new branch for your feature (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+Please ensure your PR:
+
+- Has a clear description of the changes
+- Includes tests if applicable
+- Follows the existing code style
+- Updates documentation if needed
