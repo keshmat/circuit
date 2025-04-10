@@ -21,8 +21,63 @@ import RegistrationsTable from "../../components/RegistrationsTable.astro";
 </AdminLayout>
 
 <script>
+  import { createClient } from "@supabase/supabase-js";
+
+  // Get the access token from cookies
+  const accessToken = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("sb-access-token="))
+    ?.split("=")[1];
+
+  // Initialize Supabase client with the access token
+  const supabase = createClient(
+    import.meta.env.PUBLIC_SUPABASE_URL,
+    import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+    accessToken
+      ? {
+          global: {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
+        }
+      : undefined
+  );
+
+  // Check authentication status
+  async function checkAuth() {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+
+    if (error || !session) {
+      window.location.href = "/admin/login";
+      return false;
+    }
+    return true;
+  }
+
   // Handle refresh
-  document.getElementById("refresh")?.addEventListener("click", () => {
-    window.location.reload();
+  document.getElementById("refresh")?.addEventListener("click", async () => {
+    if (await checkAuth()) {
+      window.location.reload();
+    }
   });
+
+  // Handle CSV export
+  document.getElementById("export-csv")?.addEventListener("click", async () => {
+    if (await checkAuth()) {
+      // The CSV export functionality is handled in the RegistrationsTable component
+      const exportButton = document.querySelector(
+        "#export-csv"
+      ) as HTMLButtonElement;
+      if (exportButton) {
+        exportButton.click();
+      }
+    }
+  });
+
+  // Initial auth check
+  checkAuth();
 </script>

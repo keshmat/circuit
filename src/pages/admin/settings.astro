@@ -101,11 +101,56 @@ if (error) {
   </div>
 
   <script>
+    import { createClient } from "@supabase/supabase-js";
+
+    // Get the access token from cookies
+    const accessToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("sb-access-token="))
+      ?.split("=")[1];
+
+    // Initialize Supabase client with the access token
+    const supabase = createClient(
+      import.meta.env.PUBLIC_SUPABASE_URL,
+      import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+      accessToken
+        ? {
+            global: {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },
+          }
+        : undefined
+    );
+
+    // Check authentication status
+    async function checkAuth() {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error || !session) {
+        window.location.href = "/admin/login";
+        return false;
+      }
+      return true;
+    }
+
     const form = document.getElementById("settingsForm");
     if (!form) throw new Error("Form not found");
 
+    // Initial auth check
+    checkAuth();
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      // Check auth before proceeding
+      if (!(await checkAuth())) {
+        return;
+      }
 
       const settingsId = (
         document.querySelector('input[name="settingsId"]') as HTMLInputElement
