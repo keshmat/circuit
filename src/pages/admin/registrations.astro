@@ -47,11 +47,11 @@ import RegistrationsTable from "../../components/RegistrationsTable.astro";
   // Check authentication status
   async function checkAuth() {
     const {
-      data: { session },
+      data: { user },
       error,
-    } = await supabase.auth.getSession();
+    } = await supabase.auth.getUser();
 
-    if (error || !session) {
+    if (error || !user) {
       window.location.href = "/admin/login";
       return false;
     }
