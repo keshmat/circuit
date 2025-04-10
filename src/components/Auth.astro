@@ -102,25 +102,10 @@ import { supabase } from "../db/supabase";
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // Debug: Log the raw form data
-      const formData = new FormData(form);
-      console.log("Raw form data entries:");
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-
       // Get form values
       const email = emailInput.value.trim();
       const otp = otpInput.value.trim();
       const rememberMeValue = rememberMe.checked;
-
-      console.log("Form values:", {
-        email,
-        otp,
-        rememberMe: rememberMeValue,
-        emailInputValue: emailInput.value,
-        emailInputType: typeof emailInput.value,
-      });
 
       if (!email) {
         console.error("Email is empty or null");
@@ -139,7 +124,6 @@ import { supabase } from "../db/supabase";
       try {
         if (!otpSection.classList.contains("hidden")) {
           // Verify OTP - use the stored email
-          console.log("Verifying OTP with email:", currentEmail);
           const response = await fetch("/api/auth/signin", {
             method: "POST",
             headers: {
@@ -170,7 +154,6 @@ import { supabase } from "../db/supabase";
           `;
         } else {
           // Send OTP
-          console.log("Sending OTP to email:", email);
           const response = await fetch("/api/auth/signin", {
             method: "POST",
             headers: {
@@ -189,7 +172,6 @@ import { supabase } from "../db/supabase";
 
           // Store the email for verification
           currentEmail = email;
-          console.log("Stored email for verification:", currentEmail);
 
           // Show OTP input
           otpSection.classList.remove("hidden");
