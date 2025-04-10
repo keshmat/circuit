@@ -2,13 +2,6 @@
 export const prerender = false;
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import RegistrationsTable from "../../components/RegistrationsTable.astro";
-import { requireAuth } from "../../lib/auth";
-
-// Check authentication
-const redirect = requireAuth(Astro);
-if (redirect) {
-  return redirect;
-}
 ---
 
 <AdminLayout title="Registrations">
