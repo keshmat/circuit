@@ -71,8 +71,8 @@ if (error) {
                 class="input input-bordered w-full max-w-xs"
                 value={settings?.registration_deadline
                   ? new Date(settings.registration_deadline)
-                      .toLocaleString("sv", { timeZone: "UTC" })
-                      .replace(" ", "T")
+                      .toISOString()
+                      .slice(0, 16)
                   : ""}
               />
             </div>
