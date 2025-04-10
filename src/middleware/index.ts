@@ -8,11 +8,8 @@ const redirectRoutes = ["/admin/login(|/)"];
 export const onRequest = defineMiddleware(
   async ({ locals, url, cookies, redirect }, next) => {
     if (micromatch.isMatch(url.pathname, protectedRoutes)) {
-      console.log("Protected route");
       const accessToken = cookies.get("sb-access-token");
       const refreshToken = cookies.get("sb-refresh-token");
-      console.log("Access token:", accessToken);
-      console.log("Refresh token:", refreshToken);
 
       if (!accessToken || !refreshToken) {
         return redirect("/admin/login");
