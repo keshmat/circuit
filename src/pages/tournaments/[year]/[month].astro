@@ -94,28 +94,60 @@ try {
       {month.charAt(0).toUpperCase() + month.slice(1)}
       {year} Tournament
     </h1>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Tournament Results</h2>
-      <div class="overflow-x-auto">
-        <div id="resultsContainer">
-          <TournamentTable records={results} />
-        </div>
-      </div>
-      {
-        results.length > 5 && (
-          <div class="mt-4 text-center">
-            <button class="btn btn-primary" id="showMoreBtn">
-              Show All
-            </button>
-          </div>
-        )
-      }
-    </section>
-
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">Photos</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="md:hidden">
+        <div class="carousel carousel-center rounded-box">
+          {
+            imageEntries.map((image, index) => (
+              <div
+                id={`item${index}`}
+                class="carousel-item w-full aspect-[4/3]"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={800}
+                  height={600}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            ))
+          }
+          <div id="itemMore" class="carousel-item w-full aspect-[4/3]">
+            <div class="card bg-base-200 h-full w-full">
+              <div class="card-body">
+                <h3 class="card-title">More Photos</h3>
+                <p>View all photos from this tournament</p>
+                <div class="card-actions justify-end">
+                  {
+                    tournament?.galleryUrl ? (
+                      <a href={tournament.galleryUrl} class="btn btn-primary">
+                        View Gallery
+                      </a>
+                    ) : (
+                      <button class="btn btn-disabled" disabled>
+                        Gallery Coming Soon
+                      </button>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-2 mt-4">
+          {
+            imageEntries.map((_, index) => (
+              <a href={`#item${index}`} class="btn btn-xs">
+                {index + 1}
+              </a>
+            ))
+          }
+          <a href="#itemMore" class="btn btn-xs">+</a>
+        </div>
+      </div>
+      <div class="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
         {
           imageEntries.map((image) => (
             <Image
@@ -147,6 +179,24 @@ try {
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Tournament Results</h2>
+      <div class="overflow-x-auto">
+        <div id="resultsContainer">
+          <TournamentTable records={results} />
+        </div>
+      </div>
+      {
+        results.length > 5 && (
+          <div class="mt-4 text-center">
+            <button class="btn btn-primary" id="showMoreBtn">
+              Show All
+            </button>
+          </div>
+        )
+      }
     </section>
   </main>
 </Layout>
