@@ -87,9 +87,13 @@ if (error) {
                 id="registrationMessage"
                 name="registrationMessage"
                 class="textarea textarea-bordered w-full"
-                placeholder="Enter a message to display at the top of the registration page..."
+                placeholder="Enter a message to display at the top of the registration page (supports markdown)..."
                 >{settings?.registration_message || ""}</textarea
               >
+              <div class="text-sm text-gray-500 mt-1">
+                You can use markdown formatting in this message. For example:
+                **bold**, *italic*, [links](url), etc.
+              </div>
             </div>
           </div>
 
