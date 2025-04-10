@@ -1,9 +1,141 @@
 import { supabase } from "../db/supabase";
 import * as tus from "tus-js-client";
+import { marked } from "marked";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
 
-export function initRegistrationForm() {
+// Configure marked to sanitize HTML
+marked.setOptions({
+  sanitize: true,
+  breaks: true,
+});
+
+export async function initRegistrationForm() {
+  // Fetch registration settings
+  const { data: settings } = await supabase
+    .from("registration_settings")
+    .select(
+      "is_registration_open, max_registrations, registration_deadline, registration_message"
+    )
+    .single();
+
+  // Get registration count using the function
+  const { data: count } = await supabase.rpc("get_registration_count");
+
+  if (!settings) {
+    console.error("Failed to fetch registration settings");
+    return;
+  }
+
+  const now = new Date();
+  const deadline = settings.registration_deadline
+    ? new Date(settings.registration_deadline)
+    : null;
+  const isRegistrationClosed =
+    !settings.is_registration_open || (deadline && now > deadline);
+  const isRegistrationFull = (count || 0) >= settings.max_registrations;
+
+  // Update the registration message if it exists
+  const messageContainer = document.querySelector(".alert-info p");
+  if (messageContainer && settings.registration_message) {
+    // Convert markdown to HTML and set it as innerHTML
+    messageContainer.innerHTML = marked(settings.registration_message);
+  }
+
+  // Update registration status
+  const statusContainer = document.querySelector(".registration-status");
+  if (statusContainer) {
+    if (isRegistrationClosed) {
+      statusContainer.innerHTML = `
+        <div class="alert alert-error mb-8">
+          <div class="flex-1">
+            <p>
+              Registration is currently closed.
+              ${
+                deadline && now > deadline
+                  ? ` The registration deadline was ${deadline.toLocaleString()}.`
+                  : ""
+              }
+            </p>
+          </div>
+        </div>
+      `;
+    } else if (isRegistrationFull) {
+      statusContainer.innerHTML = `
+        <div class="alert alert-error mb-8">
+          <div class="flex-1">
+            <p>
+              Registration is full. The maximum number of registrations (${settings.max_registrations}) has been reached.
+            </p>
+          </div>
+        </div>
+      `;
+    } else {
+      // Show the form with deadline warning if applicable
+      const formSection = statusContainer.querySelector("section");
+      if (formSection) {
+        const seatsOpen = settings.max_registrations - (count || 0);
+        const warningDiv = document.createElement("div");
+        warningDiv.className = "alert alert-warning mb-4";
+        warningDiv.innerHTML = `
+          <div class="flex-1">
+            ${
+              deadline
+                ? `<p>Registration closes on ${deadline.toLocaleString()}</p>`
+                : ""
+            }
+            <p class="mt-2">${seatsOpen} seat${
+          seatsOpen !== 1 ? "s" : ""
+        } remaining</p>
+          </div>
+        `;
+        formSection
+          .querySelector(".card-body")
+          ?.insertBefore(warningDiv, formSection.querySelector("form"));
+      }
+    }
+  }
+
+  // Handle FIDE ID section visibility
+  const fideIdSection = document.getElementById("fide-id-section");
+  const fideIdInputs = document.querySelectorAll('input[name="has-fide-id"]');
+  const fideIdInput = document.getElementById("fide-id") as HTMLInputElement;
+  const birthdaySection = document.getElementById(
+    "birthday-section"
+  ) as HTMLDivElement;
+  const birthdayInput = document.getElementById("birthday") as HTMLInputElement;
+
+  if (
+    fideIdSection &&
+    fideIdInputs &&
+    fideIdInput &&
+    birthdaySection &&
+    birthdayInput
+  ) {
+    // Initially set FIDE ID as not required since it's hidden
+    fideIdInput.required = false;
+    birthdayInput.required = true; // Birthday is required by default
+
+    fideIdInputs.forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.value === "yes") {
+          fideIdSection.classList.remove("hidden");
+          birthdaySection.classList.add("hidden");
+          fideIdInput.required = true;
+          birthdayInput.required = false;
+          birthdayInput.value = ""; // Clear birthday when hiding
+        } else {
+          fideIdSection.classList.add("hidden");
+          birthdaySection.classList.remove("hidden");
+          fideIdInput.required = false;
+          birthdayInput.required = true;
+          fideIdInput.value = ""; // Clear FIDE ID when hiding
+        }
+      });
+    });
+  }
+
   const form = document.getElementById("registration-form") as HTMLFormElement;
   const submitButton = form?.querySelector(
     "button[type='submit']"
@@ -46,59 +178,6 @@ export function initRegistrationForm() {
       }
     }
   });
-
-  // Handle FIDE ID radio buttons
-  const hasFideIdRadio = document.querySelectorAll(
-    'input[name="has-fide-id"]'
-  ) as NodeListOf<HTMLInputElement>;
-  const fideIdSection = document.getElementById("fide-id-section");
-  const birthdaySection = document.getElementById("birthday-section");
-  const fideInput = document.getElementById("fide-id") as HTMLInputElement;
-  const birthdayInput = document.getElementById("birthday") as HTMLInputElement;
-
-  if (fideIdSection && birthdaySection && fideInput && birthdayInput) {
-    const handleFideChange = (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      if (target.value === "yes") {
-        // Show FIDE ID, hide birthday
-        fideIdSection.classList.remove("hidden");
-        birthdaySection.classList.add("hidden");
-        // Make FIDE ID required, birthday not required
-        fideInput.required = true;
-        birthdayInput.required = false;
-        // Clear birthday value since it's not required
-        birthdayInput.value = "";
-      } else {
-        // Show birthday, hide FIDE ID
-        fideIdSection.classList.add("hidden");
-        birthdaySection.classList.remove("hidden");
-        // Make birthday required, FIDE ID not required
-        birthdayInput.required = true;
-        fideInput.required = false;
-        // Clear FIDE ID value since it's not required
-        fideInput.value = "";
-      }
-    };
-
-    // Set initial state (No FIDE ID selected by default)
-    const noRadio = document.querySelector(
-      'input[name="has-fide-id"][value="no"]'
-    ) as HTMLInputElement;
-    if (noRadio) {
-      // Initially show birthday, hide FIDE ID
-      fideIdSection.classList.add("hidden");
-      birthdaySection.classList.remove("hidden");
-      // Initially make birthday required, FIDE ID not required
-      fideInput.required = false;
-      birthdayInput.required = true;
-      // Ensure FIDE ID is cleared initially
-      fideInput.value = "";
-    }
-
-    hasFideIdRadio.forEach((radio) => {
-      radio.addEventListener("change", handleFideChange);
-    });
-  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
