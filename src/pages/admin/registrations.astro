@@ -5,8 +5,8 @@ import RegistrationsTable from "../../components/RegistrationsTable.astro";
 ---
 
 <AdminLayout title="Registrations">
-  <main class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
+  <main class="w-full">
+    <div class="flex justify-between items-center mb-8 px-4">
       <h1 class="text-4xl font-bold">Registrations</h1>
       <div class="flex gap-4">
         <button id="export-csv" class="btn btn-primary">Export CSV</button>
@@ -14,7 +14,9 @@ import RegistrationsTable from "../../components/RegistrationsTable.astro";
       </div>
     </div>
 
-    <RegistrationsTable />
+    <div class="px-4">
+      <RegistrationsTable />
+    </div>
   </main>
 </AdminLayout>
 
