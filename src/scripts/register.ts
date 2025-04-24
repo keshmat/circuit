@@ -247,7 +247,7 @@ export async function initRegistrationForm() {
               email: formData.get("email"),
               phone: formData.get("phone"),
               fide_id: formData.get("fide-id"),
-              birthday: formData.get("birthday"),
+              birthday: formData.get("birthday") || null,
               payment_receipt_url: fileName,
               status: "pending",
             });
