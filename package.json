@@ -1,12 +1,16 @@
 {
-  "name": "",
+  "name": "keshmat-chess-circuit",
   "type": "module",
   "version": "0.0.1",
+  "bin": {
+    "circuit": "./scripts/circuit.js"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "circuit": "node scripts/circuit.js"
   },
   "dependencies": {
     "@astrojs/netlify": "^6.2.5",
@@ -16,6 +20,8 @@
     "@types/sqlite3": "^5.1.0",
     "@types/xlsx": "^0.0.36",
     "astro": "^5.5.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
     "csv-parse": "^5.6.0",
     "daisyui": "^5.0.4",
     "marked": "^15.0.8",

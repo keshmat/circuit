@@ -6,8 +6,10 @@
   "bin": {
     "circuit": "./circuit.js"
   },
+  "type": "commonjs",
   "scripts": {
-    "setup": "yarn install",
+    "setup": "pnpm install",
+    "circuit": "node circuit.js",
     "process": "node circuit.js process",
     "import": "node circuit.js import",
     "leaderboard": "node circuit.js leaderboard",
@@ -32,5 +34,6 @@
   },
   "engines": {
     "node": ">=22.0.0"
-  }
+  },
+  "packageManager": "pnpm@10.9.0"
 }

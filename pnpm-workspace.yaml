@@ -1,2 +1,6 @@
+packages:
+  - 'scripts'
+  - '.'
+
 onlyBuiltDependencies:
   - sqlite3
