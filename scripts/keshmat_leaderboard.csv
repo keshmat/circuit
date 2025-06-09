@@ -1,248 +1,256 @@
 Rank,Name,Title,Federation,Tournaments Played,Tournaments Counted,Total Points,Avg Points,Avg Rating,Avg Opponent Rating,Win Percentage
-1,"Arkadan Adib",CM,LBN,6,6,37.5,6.25,2267,1891,89.3
-2,"Assaad Joe",CM,LBN,7,6,36.0,6.00,2115,1877,83.3
-3,"Khoder Akram",FM,LBN,6,6,35.5,5.92,2201,1855,84.1
-4,"Adeimi Michel",,LBN,6,6,32.5,5.42,2136,1878,77.4
-5,"Kaloust Giorgio",,LBN,6,6,32.0,5.33,1987,1823,75.6
-6,"Kassar Bashar",,LBN,6,6,32.0,5.33,1937,1847,76.2
-7,"Hazimeh Ahmad Ali",,LBN,6,6,31.5,5.25,1866,1750,75.0
-8,"Najjar Ahmad",FM,LBN,7,6,29.0,4.83,2045,1758,69.0
-9,"Nasser Hadi",,LBN,7,6,29.0,4.83,1822,1726,66.7
-10,"Fawaz Nadia",WCM,LBN,7,6,29.0,4.83,1870,1796,65.6
-11,"Saadeddine Adam",,LBN,6,6,27.0,4.50,1852,1748,65.9
-12,"Attieh Skye",WCM,LBN,6,6,27.0,4.50,1804,1760,63.4
-13,"Akl Jad Eli",ACM,LBN,6,6,26.5,4.42,1657,1808,63.1
-14,"Al Asmar Remy",WCM,LBN,6,6,26.0,4.33,1790,1712,61.9
-15,"Girard Sebastien",AIM,LBN,6,6,26.0,4.33,1643,1735,61.3
-16,"Moughames Ronald",,LBN,5,5,25.0,5.00,1861,1735,71.4
-17,"Kassis Antoine",FM,LBN,5,5,25.0,5.00,2004,1824,71.4
-18,"Kazandjian Aram",AFM,LBN,7,6,25.0,4.17,1670,1722,56.3
-19,"Garabet Charbel",ACM,LBN,7,6,22.5,3.75,1643,1729,51.0
-20,"Hamadeh Sally",,LBN,7,6,22.5,3.75,1624,1742,51.0
-21,"Atayan Michel",,LBN,6,6,22.0,3.67,1565,1759,51.2
-22,"Bsat Kinana",,LBN,5,5,21.0,4.20,1579,1740,58.8
-23,"Hadad Peter",,LBN,6,6,19.5,3.25,1564,1744,45.1
-24,"Bchara Charbel",,LBN,5,5,19.0,3.80,1632,1676,54.5
-25,"Zeitjian Sarkis",,LBN,6,6,19.0,3.17,1546,1769,43.9
-26,"Dagher Habib",ACM,LBN,7,6,19.0,3.17,1462,1724,42.9
-27,"Masri Mohamad",,LBN,6,6,18.5,3.08,1514,1686,42.7
-28,"Attieh Kate",,LBN,5,5,18.0,3.60,1706,1732,51.4
-29,"Masri Ali Rida",,LBN,7,6,18.0,3.00,1417,1607,39.4
-30,"El Khoury Alexander",,LBN,5,5,17.5,3.50,1622,1746,50.0
-31,"Fawaz Mohamad",,LBN,4,4,17.0,4.25,1931,1779,76.2
-32,"El-Bittar John Fadi",,USA,4,4,16.5,4.13,1725,1792,57.4
-33,"Wadih Michel",,LBN,4,4,16.5,4.13,1656,1784,57.4
-34,"Seifeddine Ghazi",,LBN,5,5,16.0,3.20,1466,1699,45.5
-35,"Ferzli Michael",,LBN,3,3,15.5,5.17,1849,1727,73.8
-36,"El Khoury Elias",,LBN,4,4,15.5,3.88,1615,1698,51.9
-37,"Salman Jamal",,LBN,5,5,15.5,3.10,1677,1678,53.7
-38,"Qudsi Mohammad",,LBN,3,3,14.5,4.83,1689,1729,67.5
-39,"Salameh Celio Wissam",,LBN,4,4,14.5,3.63,1620,1675,51.8
-40,"Sioufi Oussama",,LBN,4,4,14.5,3.63,1599,1715,53.7
-41,"Mounayar Maroun",,LBN,4,4,14.5,3.63,1693,1654,51.8
-42,"Saad Tarek Moustapha",,LBN,3,3,14.0,4.67,1636,1754,66.7
-43,"Karam Mark",,LBN,4,4,14.0,3.50,1847,1683,66.7
-44,"Fares Ali",,LBN,5,5,14.0,2.80,1588,1758,50.0
-45,"Mardikian Antranik Marc",,LBN,3,3,13.5,4.50,1750,1708,64.3
-46,"Bchara Anthony",,LBN,4,4,13.5,3.38,1462,1709,44.2
-47,"Kassar Paul",,LBN,4,4,13.5,3.38,1557,1690,48.1
-48,"Atayan Carlo",,LBN,5,5,13.5,2.70,1409,1659,34.8
-49,"El Khoury Antonio",,LBN,3,3,13.0,4.33,1635,1712,61.9
-50,"Darwiche Mohamad",,LBN,3,3,13.0,4.33,1689,1642,61.9
-51,"Salman Fatima",,LBN,4,4,13.0,3.25,1631,1757,46.4
-52,"Younes Youssef",,LBN,5,5,13.0,2.60,0,1566,30.0
-53,"Hassabo Christopher",,LBN,4,4,12.5,3.13,1537,1772,46.3
-54,"Totonji Kamal",,LBN,3,3,12.0,4.00,1625,1655,55.0
-55,"Kayem Assi",,LBN,7,6,12.0,2.00,0,1572,23.9
-56,"Iskandarian Edward",,LBN,3,3,11.5,3.83,1789,1743,60.5
-57,"Khoury Rabih",,LBN,3,3,11.5,3.83,1682,1672,54.8
-58,"Salem Ralph",,LBN,3,3,11.0,3.67,1692,1660,52.4
-59,"Slim Nadim",,LBN,3,3,11.0,3.67,1816,1772,78.6
-60,"Safi Michel",,LBN,3,3,11.0,3.67,1730,1651,52.4
-61,"Tarabay Hady",,LBN,2,2,10.5,5.25,1907,1718,73.1
-62,"Eid Fadi",IM,LBN,2,2,10.5,5.25,2312,1923,75.0
-63,"Samman Karim",,LBN,3,3,10.5,3.50,1617,1692,50.0
-64,"Aawar Amid",,LBN,4,4,10.5,2.63,1514,1714,37.5
-65,"Kassar Pierre",,LBN,3,3,10.0,3.33,1546,1697,45.0
-66,"Nasr Yamen",,LBN,3,3,10.0,3.33,1566,1636,47.6
-67,"Zrour Hanna",,LBN,3,3,10.0,3.33,1634,1727,45.0
-68,"Habash Mohamad",,LBN,3,3,10.0,3.33,1822,1855,71.4
-69,"Jeradeh Rym",,LBN,4,4,10.0,2.50,1411,1595,33.3
-70,"Akiki Charbel",,LBN,4,4,9.5,2.38,0,1664,33.9
-71,"Ghossoub Anthony",,LBN,2,2,9.0,4.50,1759,1689,64.3
-72,"Mrad Charif",,LBN,2,2,9.0,4.50,1773,1664,64.3
-73,"El Khoury Jean Pierre",,LBN,3,3,9.0,3.00,1466,1657,42.9
-74,"Tenbelian Haig",,LBN,3,3,9.0,3.00,1584,1665,45.0
-75,"Sarhan Wahid",,SYR,2,2,8.5,4.25,1809,1660,62.5
-76,"Mardikian Antranik Mardig",,LBN,2,2,8.5,4.25,1649,1832,60.7
-77,"Sharbel Marwan",,LBN,2,2,8.5,4.25,1856,1766,60.7
-78,"Kobeissey Jessica",,LBN,3,3,8.5,2.83,1490,1701,34.2
-79,"Abou Taam Fatima",,LBN,2,2,8.0,4.00,1717,1706,57.1
-80,"Younes Mohamad Hussein",,LBN,2,2,8.0,4.00,1654,1691,61.5
-81,"Temraz Samer",,LBN,2,2,8.0,4.00,1616,1631,53.8
-82,"Van Der Knijff Kees",,NED,2,2,8.0,4.00,1970,1737,57.1
-83,"Farra Marc Anwar",,LBN,2,2,8.0,4.00,1795,1737,57.1
-84,"Kassaa Karim",,LBN,3,3,8.0,2.67,0,1563,38.1
-85,"Tawil Charbel.",,SYR,2,2,7.5,3.75,1613,1580,53.6
-86,"Ramadan Wissam",,LBN,2,2,7.5,3.75,1702,1641,40.9
-87,"Darweeche Hussein",,LBN,2,2,7.5,3.75,1569,1735,53.6
-88,"Eid Christopher",,LBN,3,3,7.5,2.50,1598,1637,35.7
-89,"Al Jurdi Ribal",,LBN,2,2,7.0,3.50,1519,1742,53.8
-90,"Shehab Mohammad",,LBN,2,2,7.0,3.50,1566,1793,53.8
+1,"Khoder Akram",FM,LBN,7,7,41.5,5.93,2207,1844,84.4
+2,"Assaad Joe",CM,LBN,8,7,41.0,5.86,2127,1872,81.8
+3,"Kaloust Giorgio",,LBN,7,7,38.0,5.43,1995,1836,77.1
+4,"Arkadan Adib",CM,LBN,7,7,37.5,5.36,2267,1891,89.3
+5,"Kassar Bashar",,LBN,7,7,35.5,5.07,1944,1841,72.4
+6,"Hazimeh Ahmad Ali",,LBN,7,7,35.5,5.07,1874,1747,72.4
+7,"Adeimi Michel",,LBN,7,7,35.0,5.00,2138,1868,76.1
+8,"Najjar Ahmad",FM,LBN,8,7,35.0,5.00,2043,1775,71.4
+9,"Fawaz Nadia",WCM,LBN,8,7,34.0,4.86,1874,1800,66.4
+10,"Nasser Hadi",,LBN,8,7,34.0,4.86,1830,1740,67.3
+11,"Akl Jad Eli",ACM,LBN,7,7,31.5,4.50,1675,1795,64.3
+12,"Attieh Skye",WCM,LBN,7,7,31.5,4.50,1806,1749,63.5
+13,"Saadeddine Adam",,LBN,7,7,31.5,4.50,1865,1774,65.6
+14,"Moughames Ronald",,LBN,6,6,29.0,4.83,1873,1734,69.0
+15,"Kazandjian Aram",AFM,LBN,8,7,28.0,4.00,1675,1722,56.3
+16,"Hamadeh Sally",,LBN,8,7,26.5,3.79,1626,1748,50.9
+17,"Al Asmar Remy",WCM,LBN,6,6,26.0,4.33,1790,1712,61.9
+18,"Girard Sebastien",AIM,LBN,6,6,26.0,4.33,1643,1735,61.3
+19,"Garabet Charbel",ACM,LBN,8,7,25.5,3.64,1635,1722,50.0
+20,"Kassis Antoine",FM,LBN,5,5,25.0,5.00,2004,1824,71.4
+21,"Bchara Charbel",,LBN,6,6,23.5,3.92,1643,1708,55.1
+22,"Fawaz Mohamad",,LBN,5,5,22.5,4.50,1934,1778,76.8
+23,"Zeitjian Sarkis",,LBN,7,7,22.5,3.21,1538,1760,44.8
+24,"Atayan Michel",,LBN,6,6,22.0,3.67,1565,1759,51.2
+25,"Masri Mohamad",,LBN,7,7,22.0,3.14,1529,1687,43.8
+26,"Bsat Kinana",,LBN,5,5,21.0,4.20,1579,1740,58.8
+27,"Dagher Habib",ACM,LBN,8,7,21.0,3.00,1464,1719,40.0
+28,"Masri Ali Rida",,LBN,8,7,20.5,2.93,1417,1607,38.9
+29,"Karam Mark",,LBN,5,5,19.5,3.90,1842,1717,69.6
+30,"Hadad Peter",,LBN,6,6,19.5,3.25,1564,1744,45.1
+31,"Salameh Celio Wissam",,LBN,5,5,18.5,3.70,1621,1703,52.9
+32,"Attieh Kate",,LBN,5,5,18.0,3.60,1706,1732,51.4
+33,"El Khoury Alexander",,LBN,5,5,17.5,3.50,1622,1746,50.0
+34,"Darwiche Mohamad",,LBN,4,4,17.0,4.25,1698,1677,63.0
+35,"El-Bittar John Fadi",,USA,4,4,16.5,4.13,1725,1792,57.4
+36,"Wadih Michel",,LBN,4,4,16.5,4.13,1656,1784,57.4
+37,"Seifeddine Ghazi",,LBN,5,5,16.0,3.20,1466,1699,45.5
+38,"Salman Fatima",,LBN,5,5,16.0,3.20,1618,1762,45.7
+39,"Ferzli Michael",,LBN,3,3,15.5,5.17,1849,1727,73.8
+40,"El Khoury Elias",,LBN,4,4,15.5,3.88,1615,1698,51.9
+41,"Khoury Rabih",,LBN,4,4,15.5,3.88,1679,1708,55.4
+42,"Salman Jamal",,LBN,5,5,15.5,3.10,1677,1678,53.7
+43,"Slim Nadim",,LBN,4,4,15.0,3.75,1831,1821,70.0
+44,"Younes Youssef",,LBN,6,6,15.0,2.50,0,1575,27.8
+45,"Qudsi Mohammad",,LBN,3,3,14.5,4.83,1689,1729,67.5
+46,"Sioufi Oussama",,LBN,4,4,14.5,3.63,1599,1715,53.7
+47,"Salem Ralph",,LBN,4,4,14.5,3.63,1683,1682,51.8
+48,"Mounayar Maroun",,LBN,4,4,14.5,3.63,1693,1654,51.8
+49,"Saad Tarek Moustapha",,LBN,3,3,14.0,4.67,1636,1754,66.7
+50,"Fares Ali",,LBN,5,5,14.0,2.80,1588,1758,50.0
+51,"Mardikian Antranik Marc",,LBN,3,3,13.5,4.50,1750,1708,64.3
+52,"Bchara Anthony",,LBN,4,4,13.5,3.38,1462,1709,44.2
+53,"Kassar Paul",,LBN,4,4,13.5,3.38,1557,1690,48.1
+54,"Atayan Carlo",,LBN,5,5,13.5,2.70,1409,1659,34.8
+55,"El Khoury Antonio",,LBN,3,3,13.0,4.33,1635,1712,61.9
+56,"Kayem Assi",,LBN,7,7,13.0,1.86,0,1572,23.9
+57,"Farra Marc Anwar",,LBN,3,3,12.5,4.17,1795,1744,57.5
+58,"Kassar Pierre",,LBN,4,4,12.5,3.13,1542,1691,42.6
+59,"Hassabo Christopher",,LBN,4,4,12.5,3.13,1537,1772,46.3
+60,"Totonji Kamal",,LBN,3,3,12.0,4.00,1625,1655,55.0
+61,"Abou Taam Fatima",,LBN,3,3,12.0,4.00,1692,1752,57.1
+62,"Kobeissey Jessica",,LBN,4,4,12.0,3.00,1482,1675,38.5
+63,"Tenbelian Haig",,LBN,4,4,12.0,3.00,1566,1675,44.4
+64,"Iskandarian Edward",,LBN,3,3,11.5,3.83,1789,1743,60.5
+65,"Safi Michel",,LBN,3,3,11.0,3.67,1730,1651,52.4
+66,"Tarabay Hady",,LBN,2,2,10.5,5.25,1907,1718,73.1
+67,"Eid Fadi",IM,LBN,2,2,10.5,5.25,2312,1923,75.0
+68,"Samman Karim",,LBN,3,3,10.5,3.50,1617,1692,50.0
+69,"Aawar Amid",,LBN,4,4,10.5,2.63,1514,1714,37.5
+70,"Habash Mohamad",,LBN,3,3,10.0,3.33,1822,1855,71.4
+71,"Nasr Yamen",,LBN,3,3,10.0,3.33,1566,1636,47.6
+72,"Zrour Hanna",,LBN,3,3,10.0,3.33,1634,1727,45.0
+73,"Jeradeh Rym",,LBN,4,4,10.0,2.50,1411,1595,33.3
+74,"Akiki Charbel",,LBN,4,4,9.5,2.38,0,1664,33.9
+75,"Ghossoub Anthony",,LBN,2,2,9.0,4.50,1759,1689,64.3
+76,"Mrad Charif",,LBN,2,2,9.0,4.50,1773,1664,64.3
+77,"El Khoury Jean Pierre",,LBN,3,3,9.0,3.00,1466,1657,42.9
+78,"Sarhan Wahid",,SYR,2,2,8.5,4.25,1809,1660,62.5
+79,"Mardikian Antranik Mardig",,LBN,2,2,8.5,4.25,1649,1832,60.7
+80,"Sharbel Marwan",,LBN,3,3,8.5,2.83,1840,1766,60.7
+81,"Abi Chaaya Rolanthony",,LBN,3,3,8.5,2.83,1570,1689,37.5
+82,"Younes Mohamad Hussein",,LBN,2,2,8.0,4.00,1654,1691,61.5
+83,"Temraz Samer",,LBN,2,2,8.0,4.00,1616,1631,53.8
+84,"Van Der Knijff Kees",,NED,2,2,8.0,4.00,1970,1737,57.1
+85,"Harakeh Jihad",,LBN,3,3,8.0,2.67,1597,1773,38.1
+86,"Kassaa Karim",,LBN,3,3,8.0,2.67,0,1563,38.1
+87,"Tawil Charbel.",,SYR,2,2,7.5,3.75,1613,1580,53.6
+88,"Ramadan Wissam",,LBN,2,2,7.5,3.75,1702,1641,40.9
+89,"Darweeche Hussein",,LBN,2,2,7.5,3.75,1569,1735,53.6
+90,"Eid Christopher",,LBN,3,3,7.5,2.50,1598,1637,35.7
 91,"El Abd Qassim",,PLE,2,2,7.0,3.50,1606,1683,50.0
-92,"Eid Oliver",,LBN,3,3,7.0,2.33,0,1556,30.0
-93,"Fayad Steven",,LBN,2,2,6.5,3.25,1625,1670,46.4
-94,"Sursock Sameer",FM,LBN,1,1,6.0,6.00,1992,1952,85.7
-95,"El Jawich Louay",,LBN,2,2,6.0,3.00,0,1592,42.9
-96,"Abi Chaaya Rolanthony",,LBN,2,2,6.0,3.00,0,1637,38.5
-97,"Abou Dargham Johnny",,LBN,2,2,6.0,3.00,0,1609,42.9
-98,"Hachem Marc",,LBN,2,2,6.0,3.00,1573,1690,38.5
-99,"Harakeh Jihad",,LBN,2,2,6.0,3.00,1601,1820,42.9
-100,"Sharif Nour",,LBN,2,2,6.0,3.00,1513,1723,42.9
-101,"Shoucair Alexander",,LBN,3,3,6.0,2.00,0,1569,26.3
-102,"Haidar Wassim",,LBN,1,1,5.0,5.00,1822,1698,83.3
-103,"Kalfayan Garo",,LBN,1,1,5.0,5.00,1654,1703,71.4
-104,"Khairallah Faisal",FM,LBN,1,1,5.0,5.00,2069,1870,71.4
-105,"Moudallal Tarek",,LBN,1,1,5.0,5.00,1867,1692,71.4
-106,"Farhat Jawad",,LBN,1,1,5.0,5.00,1843,1708,71.4
-107,"Saadeddine Lea",,LBN,2,2,5.0,2.50,0,1607,30.8
-108,"Abi Nader Charles",,LBN,2,2,5.0,2.50,1650,1693,36.4
-109,"Younis Youssef El Sedeek",,LBN,2,2,5.0,2.50,0,1653,25.0
-110,"Issa Ahmad",,LBN,1,1,4.5,4.50,1776,1701,64.3
-111,"Hamad Ismael",,LBN,1,1,4.5,4.50,1721,1601,64.3
-112,"El Jawich Qusay",,LBN,2,2,4.5,2.25,1401,1662,26.9
-113,"El Kassa Omar",,LBN,3,3,4.5,1.50,0,1632,17.5
-114,"Wehbe Roy",,LBN,1,1,4.0,4.00,1635,1684,57.1
-115,"Housseiny Ali",,LBN,1,1,4.0,4.00,1587,1742,57.1
-116,"Bchara Eugenie",,LBN,1,1,4.0,4.00,1518,1722,57.1
-117,"Shmoury Abdelrahim",,LBN,1,1,4.0,4.00,1707,1563,57.1
-118,"AlAhmad Ahmad Adnan",,LBN,1,1,4.0,4.00,0,1595,57.1
-119,"El Khoury Brayan",,LBN,1,1,4.0,4.00,1980,1840,66.7
-120,"Ousama Khaled Lakki",,PLE,1,1,4.0,4.00,1816,1690,57.1
-121,"Hanna Elie",,LBN,1,1,4.0,4.00,1887,1752,57.1
-122,"Arkadan Adam",,LBN,1,1,4.0,4.00,1668,1643,57.1
-123,"Matta Dany",,LBN,1,1,4.0,4.00,1740,1621,50.0
-124,"Al Hayek Ahmad",,LBN,1,1,4.0,4.00,1716,1652,57.1
-125,"Boulos Carlos",CM,LBN,1,1,4.0,4.00,2187,1843,57.1
-126,"Saad Tarek",,LBN,1,1,4.0,4.00,1818,1736,57.1
-127,"Moghnieh Hussein",AIM,LBN,1,1,4.0,4.00,1673,1861,57.1
-128,"Hamoushi Mohamad Ali",,LBN,1,1,4.0,4.00,1741,1598,57.1
-129,"Wehbi Issa",,LBN,1,1,4.0,4.00,1814,1636,57.1
-130,"Moarbes Charbel",,LBN,1,1,4.0,4.00,1723,1690,57.1
-131,"El Rahi Adrian",,LBN,1,1,4.0,4.00,1774,1809,57.1
-132,"Baydoun Rayan",,LBN,1,1,4.0,4.00,1649,1592,57.1
-133,"Abi Azar Jean",,LBN,1,1,4.0,4.00,1717,1629,50.0
-134,"Nasser Youssef",,LBN,1,1,4.0,4.00,1665,1770,57.1
-135,"Shihab Khaled",,LBN,1,1,4.0,4.00,1935,1780,57.1
-136,"Haddad Peter",,LBN,1,1,4.0,4.00,1594,1900,57.1
-137,"Abu Alfa Imad Al Deen",,LBN,1,1,4.0,4.00,1684,1697,57.1
-138,"Flayhan Zouhair",,LBN,1,1,4.0,4.00,1631,1883,57.1
-139,"Abdalah Jad",,LBN,2,2,4.0,2.00,0,1644,33.3
-140,"Abi Aad Michel",,LBN,2,2,4.0,2.00,0,1611,28.6
-141,"Hamade Rawad",,LBN,2,2,4.0,2.00,0,1531,28.6
-142,"Saleh Jihad",,LBN,2,2,4.0,2.00,1445,1621,28.6
-143,"Rahal Ali Hassan",,LBN,2,2,4.0,2.00,0,1550,28.6
-144,"Hammoud Mohammad",,LBN,2,2,4.0,2.00,0,1608,23.1
-145,"Amin Micheal",,LBN,2,2,4.0,2.00,0,1739,28.6
-146,"Al Zarif Hassan",,LBN,2,2,4.0,2.00,1841,1798,57.1
-147,"Rahhal Serje",,LBN,1,1,3.5,3.50,1605,1627,50.0
-148,"Khawli Nicolas",,LBN,1,1,3.5,3.50,1646,1626,50.0
-149,"Mokdad Mohamad",,LBN,1,1,3.5,3.50,1701,1621,41.7
-150,"El Mahmoud Abdulaziz",CM,LBN,1,1,3.5,3.50,1966,1843,50.0
-151,"Haddad Charbel-Anthony",,LBN,1,1,3.5,3.50,1541,1762,50.0
-152,"Ghabach Maria",,LBN,2,2,3.5,1.75,0,1588,25.0
-153,"Fayad Michel",,LBN,3,3,3.5,1.17,0,1532,25.0
-154,"Al Dahab Khaled",,LBN,1,1,3.0,3.00,1531,1692,42.9
-155,"Seropian Zareh",,LBN,1,1,3.0,3.00,1490,1685,42.9
-156,"Chaheen Raed",,LBN,1,1,3.0,3.00,1506,1692,50.0
-157,"Hijazi Kassem Rabih",,LBN,1,1,3.0,3.00,1530,1628,33.3
-158,"Jarrah Taha",,LBN,1,1,3.0,3.00,1537,1546,50.0
-159,"Karaali Hadi",,LBN,1,1,3.0,3.00,1446,1648,42.9
-160,"Ghanem Haitham Yehia",,LBN,1,1,3.0,3.00,1598,1790,33.3
-161,"Saber Samer",,LBN,1,1,3.0,3.00,1499,1722,42.9
-162,"Hreiche Hasan",,LBN,1,1,3.0,3.00,1488,1719,33.3
-163,"Baddour Daniel",,LBN,1,1,3.0,3.00,1491,1717,42.9
-164,"Karout Al Horr",,LBN,1,1,3.0,3.00,1426,1636,42.9
-165,"Rammal Ayman",,LBN,1,1,3.0,3.00,1806,1593,42.9
-166,"Christ Aramali",,LBN,1,1,3.0,3.00,0,1679,42.9
-167,"Saab Mario",,LBN,1,1,3.0,3.00,1531,1725,42.9
-168,"Asaad Ali",,LBN,1,1,3.0,3.00,0,1638,42.9
-169,"Abou Hjeily Karim",,LBN,1,1,3.0,3.00,0,1668,42.9
-170,"Al Harakeh Wassim",,LBN,1,1,3.0,3.00,0,1598,42.9
-171,"El Khatib Ali .M",,LBN,1,1,3.0,3.00,1647,1763,60.0
-172,"Bedrosian Danielle",,LBN,1,1,3.0,3.00,1630,1695,33.3
-173,"Hanna Kevin Claude",,LBN,1,1,3.0,3.00,1597,1979,60.0
-174,"Abou Zeid Joseph",,LBN,1,1,3.0,3.00,0,1653,42.9
-175,"Khayat Ryan",,LBN,1,1,3.0,3.00,0,1535,42.9
-176,"Chaaya Ribal",,LBN,1,1,3.0,3.00,0,1600,42.9
-177,"Al Sheikh Younes",,LBN,1,1,3.0,3.00,0,1819,33.3
-178,"Al Amine Mohsen",,LBN,1,1,3.0,3.00,0,1633,42.9
-179,"Harika Rodolph",,LBN,1,1,3.0,3.00,1425,1729,42.9
-180,"El Amine Abdallah",,LBN,1,1,3.0,3.00,0,1617,42.9
-181,"Eido Nawar",,LBN,1,1,3.0,3.00,0,1634,42.9
-182,"Saab Karim",,LBN,1,1,3.0,3.00,0,1586,33.3
-183,"Talayeh Rawad",,LBN,1,1,3.0,3.00,1563,1859,42.9
-184,"Samaha Sebou",,LBN,1,1,3.0,3.00,0,1542,33.3
-185,"Abou Jaoude Karim",,LBN,1,1,3.0,3.00,0,1671,42.9
-186,"Francis Myriam",,LBN,2,2,3.0,1.50,1427,1657,27.3
-187,"Hamoud Ali",,LBN,1,1,2.5,2.50,0,1550,35.7
-188,"Ghorabi Adam",,LBN,1,1,2.5,2.50,1582,1665,35.7
-189,"Daher Stephan",,LBN,1,1,2.5,2.50,0,1752,35.7
-190,"Jaber Mohammad Khalil",,LBN,1,1,2.5,2.50,1640,1696,35.7
-191,"Houmani Ali",,LBN,1,1,2.5,2.50,0,1622,25.0
-192,"AbouKhdoud Ali",,LBN,1,1,2.5,2.50,0,1670,35.7
-193,"El Aoji Karim",,LBN,1,1,2.5,2.50,0,1516,35.7
-194,"Chabab Sarah",,LBN,1,1,2.5,2.50,0,1598,35.7
-195,"Chami Amir",,LBN,2,2,2.5,1.25,1623,1639,35.7
-196,"Rammal Karim",,LBN,1,1,2.0,2.00,0,1525,16.7
-197,"Hammoud Amro",,LBN,1,1,2.0,2.00,1435,1627,33.3
-198,"Bechaalany Anthony",,LBN,1,1,2.0,2.00,0,1613,33.3
-199,"Rammal Celena",,LBN,1,1,2.0,2.00,0,1446,20.0
-200,"Haidar Riad",,LBN,1,1,2.0,2.00,0,1532,28.6
-201,"Keirouz Kabalan",,LBN,1,1,2.0,2.00,0,1489,66.7
-202,"Altal Mohammad Fares.",,SYR,1,1,2.0,2.00,1592,1720,33.3
-203,"Bechelany Anthony",,LBN,1,1,2.0,2.00,0,1567,28.6
-204,"Shamseddine Hussein",,LBN,1,1,2.0,2.00,0,1550,33.3
-205,"Mahdi Yousef Mohamad",,LBN,1,1,2.0,2.00,0,1565,16.7
-206,"Mardikian Antranik Maria",,LBN,1,1,2.0,2.00,0,1515,28.6
-207,"Barnaba Kay",,LBN,1,1,2.0,2.00,0,1708,16.7
-208,"Ghanem Georgio",,LBN,1,1,2.0,2.00,0,1622,28.6
-209,"Saadeddine Lana",,LBN,1,1,2.0,2.00,0,1610,28.6
-210,"Chaaban Mazen",,LBN,1,1,2.0,2.00,1714,1799,40.0
-211,"Saliba Marc Samer",,LBN,1,1,2.0,2.00,1441,1681,28.6
-212,"Dirani Hussien",,LBN,1,1,2.0,2.00,1513,1748,28.6
-213,"Al Bitar Mohammad Hachem Mahmoud",,LBN,1,1,2.0,2.00,0,1594,28.6
-214,"Yehya Hussein",,LBN,1,1,2.0,2.00,0,1640,16.7
-215,"Takkoush Abdallah",,LBN,1,1,2.0,2.00,0,1639,28.6
-216,"Al Khoury Yorgo",,LBN,1,1,2.0,2.00,1440,1729,28.6
-217,"Mrad Mario",,LBN,1,1,2.0,2.00,0,1512,33.3
-218,"Atayan Aren",,LBN,1,1,2.0,2.00,0,1696,16.7
-219,"Harajli Haidar",,LBN,1,1,2.0,2.00,0,1569,28.6
-220,"Choukri Marianne",,LBN,1,1,2.0,2.00,0,1644,28.6
-221,"El Solh Samih",,LBN,1,1,2.0,2.00,0,0,33.3
-222,"Salam Reina",,LBN,2,2,2.0,1.00,0,1570,0.0
-223,"Hamze Adam",,LBN,1,1,1.5,1.50,0,1569,8.3
-224,"Abdallah Jennifer",,LBN,1,1,1.5,1.50,1493,1668,30.0
-225,"Itani Ahmad",,LBN,1,1,1.5,1.50,0,1617,21.4
-226,"Tohme Johnny",,LBN,1,1,1.5,1.50,1456,1716,21.4
-227,"Nasr Jason",,LBN,1,1,1.5,1.50,1456,1620,21.4
-228,"Khoury Zahi",,LBN,1,1,1.5,1.50,0,1520,21.4
-229,"Chamoun John",,LBN,1,1,1.0,1.00,0,1539,0.0
-230,"Fayad Selim",,LBN,1,1,1.0,1.00,0,1590,0.0
-231,"Abi Aad Marc",,LBN,1,1,1.0,1.00,0,1657,14.3
-232,"Rahbani Mathew",,LBN,1,1,1.0,1.00,0,1477,14.3
-233,"Eid Joe",,LBN,1,1,1.0,1.00,0,1625,14.3
-234,"Souaid Elie",,LBN,1,1,1.0,1.00,1470,1725,0.0
-235,"Joumaa Amir",,LBN,1,1,1.0,1.00,0,1546,14.3
-236,"Taha Saria",,LBN,1,1,1.0,1.00,0,1535,0.0
-237,"Bsaibess Brian",,LBN,1,1,1.0,1.00,0,1578,14.3
+92,"Al Jurdi Ribal",,LBN,2,2,7.0,3.50,1519,1742,53.8
+93,"Shehab Mohammad",,LBN,2,2,7.0,3.50,1566,1793,53.8
+94,"Eid Oliver",,LBN,3,3,7.0,2.33,0,1556,30.0
+95,"Fayad Steven",,LBN,2,2,6.5,3.25,1625,1670,46.4
+96,"Sursock Sameer",FM,LBN,1,1,6.0,6.00,1992,1952,85.7
+97,"Al Amine Mohsen",,LBN,2,2,6.0,3.00,0,1635,42.9
+98,"El Jawich Louay",,LBN,2,2,6.0,3.00,0,1592,42.9
+99,"Abou Dargham Johnny",,LBN,2,2,6.0,3.00,0,1609,42.9
+100,"Hachem Marc",,LBN,2,2,6.0,3.00,1573,1690,38.5
+101,"Sharif Nour",,LBN,2,2,6.0,3.00,1513,1723,42.9
+102,"Shoucair Alexander",,LBN,3,3,6.0,2.00,0,1569,26.3
+103,"Farhat Jawad",,LBN,1,1,5.0,5.00,1843,1708,71.4
+104,"Haidar Wassim",,LBN,1,1,5.0,5.00,1822,1698,83.3
+105,"Kalfayan Garo",,LBN,1,1,5.0,5.00,1654,1703,71.4
+106,"Khairallah Faisal",FM,LBN,1,1,5.0,5.00,2069,1870,71.4
+107,"Moudallal Tarek",,LBN,1,1,5.0,5.00,1867,1692,71.4
+108,"Younis Youssef El Sedeek",,LBN,2,2,5.0,2.50,0,1653,25.0
+109,"Abi Nader Charles",,LBN,2,2,5.0,2.50,1650,1693,36.4
+110,"Saadeddine Lea",,LBN,2,2,5.0,2.50,0,1607,30.8
+111,"Issa Ahmad",,LBN,1,1,4.5,4.50,1776,1701,64.3
+112,"Hamad Ismael",,LBN,1,1,4.5,4.50,1721,1601,64.3
+113,"El Jawich Qusay",,LBN,2,2,4.5,2.25,1401,1662,26.9
+114,"El Kassa Omar",,LBN,3,3,4.5,1.50,0,1632,17.5
+115,"Shihab Khaled",,LBN,1,1,4.0,4.00,1935,1780,57.1
+116,"Haddad Peter",,LBN,1,1,4.0,4.00,1594,1900,57.1
+117,"Abu Alfa Imad Al Deen",,LBN,1,1,4.0,4.00,1684,1697,57.1
+118,"Flayhan Zouhair",,LBN,1,1,4.0,4.00,1631,1883,57.1
+119,"Wehbe Roy",,LBN,1,1,4.0,4.00,1635,1684,57.1
+120,"Housseiny Ali",,LBN,1,1,4.0,4.00,1587,1742,57.1
+121,"Bchara Eugenie",,LBN,1,1,4.0,4.00,1518,1722,57.1
+122,"Shmoury Abdelrahim",,LBN,1,1,4.0,4.00,1707,1563,57.1
+123,"AlAhmad Ahmad Adnan",,LBN,1,1,4.0,4.00,0,1595,57.1
+124,"El Khoury Brayan",,LBN,1,1,4.0,4.00,1980,1840,66.7
+125,"Ousama Khaled Lakki",,PLE,1,1,4.0,4.00,1816,1690,57.1
+126,"Hanna Elie",,LBN,1,1,4.0,4.00,1887,1752,57.1
+127,"Arkadan Adam",,LBN,1,1,4.0,4.00,1668,1643,57.1
+128,"Matta Dany",,LBN,1,1,4.0,4.00,1740,1621,50.0
+129,"Al Hayek Ahmad",,LBN,1,1,4.0,4.00,1716,1652,57.1
+130,"Boulos Carlos",CM,LBN,1,1,4.0,4.00,2187,1843,57.1
+131,"Saad Tarek",,LBN,1,1,4.0,4.00,1818,1736,57.1
+132,"Moghnieh Hussein",AIM,LBN,1,1,4.0,4.00,1673,1861,57.1
+133,"Hamoushi Mohamad Ali",,LBN,1,1,4.0,4.00,1741,1598,57.1
+134,"Wehbi Issa",,LBN,1,1,4.0,4.00,1814,1636,57.1
+135,"Moarbes Charbel",,LBN,1,1,4.0,4.00,1723,1690,57.1
+136,"El Rahi Adrian",,LBN,1,1,4.0,4.00,1774,1809,57.1
+137,"Baydoun Rayan",,LBN,1,1,4.0,4.00,1649,1592,57.1
+138,"Abi Azar Jean",,LBN,1,1,4.0,4.00,1717,1629,50.0
+139,"Nasser Youssef",,LBN,1,1,4.0,4.00,1665,1770,57.1
+140,"Ward Serge",,LBN,1,1,4.0,4.00,1812,1857,57.1
+141,"Abdalah Jad",,LBN,2,2,4.0,2.00,0,1644,33.3
+142,"Abi Aad Michel",,LBN,2,2,4.0,2.00,0,1611,28.6
+143,"Hamade Rawad",,LBN,2,2,4.0,2.00,0,1531,28.6
+144,"Saleh Jihad",,LBN,2,2,4.0,2.00,1445,1621,28.6
+145,"Rahal Ali Hassan",,LBN,2,2,4.0,2.00,0,1550,28.6
+146,"Hamze Adam",,LBN,2,2,4.0,2.00,0,1598,16.7
+147,"Hammoud Mohammad",,LBN,2,2,4.0,2.00,0,1608,23.1
+148,"Amin Micheal",,LBN,2,2,4.0,2.00,0,1739,28.6
+149,"Al Zarif Hassan",,LBN,2,2,4.0,2.00,1841,1798,57.1
+150,"Haddad Charbel-Anthony",,LBN,1,1,3.5,3.50,1541,1762,50.0
+151,"Rahhal Serje",,LBN,1,1,3.5,3.50,1605,1627,50.0
+152,"Khawli Nicolas",,LBN,1,1,3.5,3.50,1646,1626,50.0
+153,"Mokdad Mohamad",,LBN,1,1,3.5,3.50,1701,1621,41.7
+154,"El Mahmoud Abdulaziz",CM,LBN,1,1,3.5,3.50,1966,1843,50.0
+155,"Ghabach Maria",,LBN,2,2,3.5,1.75,0,1588,25.0
+156,"Fayad Michel",,LBN,3,3,3.5,1.17,0,1532,25.0
+157,"Harika Rodolph",,LBN,1,1,3.0,3.00,1425,1729,42.9
+158,"El Amine Abdallah",,LBN,1,1,3.0,3.00,0,1617,42.9
+159,"Saab Karim",,LBN,1,1,3.0,3.00,0,1586,33.3
+160,"Talayeh Rawad",,LBN,1,1,3.0,3.00,1563,1859,42.9
+161,"Samaha Sebou",,LBN,1,1,3.0,3.00,0,1542,33.3
+162,"Abou Jaoude Karim",,LBN,1,1,3.0,3.00,0,1671,42.9
+163,"Al Dahab Khaled",,LBN,1,1,3.0,3.00,1531,1692,42.9
+164,"Seropian Zareh",,LBN,1,1,3.0,3.00,1490,1685,42.9
+165,"Chaheen Raed",,LBN,1,1,3.0,3.00,1506,1692,50.0
+166,"Hijazi Kassem Rabih",,LBN,1,1,3.0,3.00,1530,1628,33.3
+167,"Jarrah Taha",,LBN,1,1,3.0,3.00,1537,1546,50.0
+168,"Karaali Hadi",,LBN,1,1,3.0,3.00,1446,1648,42.9
+169,"Ghanem Haitham Yehia",,LBN,1,1,3.0,3.00,1598,1790,33.3
+170,"Saber Samer",,LBN,1,1,3.0,3.00,1499,1722,42.9
+171,"Hreiche Hasan",,LBN,1,1,3.0,3.00,1488,1719,33.3
+172,"Baddour Daniel",,LBN,1,1,3.0,3.00,1491,1717,42.9
+173,"Karout Al Horr",,LBN,1,1,3.0,3.00,1426,1636,42.9
+174,"Rammal Ayman",,LBN,1,1,3.0,3.00,1806,1593,42.9
+175,"Christ Aramali",,LBN,1,1,3.0,3.00,0,1679,42.9
+176,"Saab Mario",,LBN,1,1,3.0,3.00,1531,1725,42.9
+177,"Asaad Ali",,LBN,1,1,3.0,3.00,0,1638,42.9
+178,"Abou Hjeily Karim",,LBN,1,1,3.0,3.00,0,1668,42.9
+179,"Al Harakeh Wassim",,LBN,1,1,3.0,3.00,0,1598,42.9
+180,"El Khatib Ali .M",,LBN,1,1,3.0,3.00,1647,1763,60.0
+181,"Bedrosian Danielle",,LBN,1,1,3.0,3.00,1630,1695,33.3
+182,"Hanna Kevin Claude",,LBN,1,1,3.0,3.00,1597,1979,60.0
+183,"Abou Zeid Joseph",,LBN,1,1,3.0,3.00,0,1653,42.9
+184,"Khayat Ryan",,LBN,1,1,3.0,3.00,0,1535,42.9
+185,"Chaaya Ribal",,LBN,1,1,3.0,3.00,0,1600,42.9
+186,"Al Sheikh Younes",,LBN,1,1,3.0,3.00,0,1819,33.3
+187,"Eid Floron",,LBN,1,1,3.0,3.00,1578,1823,42.9
+188,"Abou Taam Mahmoud",,LBN,1,1,3.0,3.00,1502,1796,42.9
+189,"Eido Nawar",,LBN,2,2,3.0,1.50,0,1634,42.9
+190,"Choukri Marianne",,LBN,2,2,3.0,1.50,0,1617,15.4
+191,"Francis Myriam",,LBN,2,2,3.0,1.50,1427,1657,27.3
+192,"Hamoud Ali",,LBN,1,1,2.5,2.50,0,1550,35.7
+193,"Ghorabi Adam",,LBN,1,1,2.5,2.50,1582,1665,35.7
+194,"Daher Stephan",,LBN,1,1,2.5,2.50,0,1752,35.7
+195,"Jaber Mohammad Khalil",,LBN,1,1,2.5,2.50,1640,1696,35.7
+196,"Houmani Ali",,LBN,1,1,2.5,2.50,0,1622,25.0
+197,"AbouKhdoud Ali",,LBN,1,1,2.5,2.50,0,1670,35.7
+198,"El Aoji Karim",,LBN,1,1,2.5,2.50,0,1516,35.7
+199,"Chabab Sarah",,LBN,1,1,2.5,2.50,0,1598,35.7
+200,"Ali Khan Amani",ACM,LBN,1,1,2.5,2.50,1588,1721,25.0
+201,"El Tayah Antoine",,LBN,1,1,2.5,2.50,0,1625,35.7
+202,"Chami Amir",,LBN,2,2,2.5,1.25,1623,1639,35.7
+203,"El Solh Samih",,LBN,1,1,2.0,2.00,0,0,33.3
+204,"Rammal Karim",,LBN,1,1,2.0,2.00,0,1525,16.7
+205,"Hammoud Amro",,LBN,1,1,2.0,2.00,1435,1627,33.3
+206,"Bechaalany Anthony",,LBN,1,1,2.0,2.00,0,1613,33.3
+207,"Rammal Celena",,LBN,1,1,2.0,2.00,0,1446,20.0
+208,"Haidar Riad",,LBN,1,1,2.0,2.00,0,1532,28.6
+209,"Keirouz Kabalan",,LBN,1,1,2.0,2.00,0,1489,66.7
+210,"Altal Mohammad Fares.",,SYR,1,1,2.0,2.00,1592,1720,33.3
+211,"Bechelany Anthony",,LBN,1,1,2.0,2.00,0,1567,28.6
+212,"Shamseddine Hussein",,LBN,1,1,2.0,2.00,0,1550,33.3
+213,"Mahdi Yousef Mohamad",,LBN,1,1,2.0,2.00,0,1565,16.7
+214,"Mardikian Antranik Maria",,LBN,1,1,2.0,2.00,0,1515,28.6
+215,"Barnaba Kay",,LBN,1,1,2.0,2.00,0,1708,16.7
+216,"Ghanem Georgio",,LBN,1,1,2.0,2.00,0,1622,28.6
+217,"Saadeddine Lana",,LBN,1,1,2.0,2.00,0,1610,28.6
+218,"Chaaban Mazen",,LBN,1,1,2.0,2.00,1714,1799,40.0
+219,"Saliba Marc Samer",,LBN,1,1,2.0,2.00,1441,1681,28.6
+220,"Dirani Hussien",,LBN,1,1,2.0,2.00,1513,1748,28.6
+221,"Al Bitar Mohammad Hachem Mahmoud",,LBN,1,1,2.0,2.00,0,1594,28.6
+222,"Yehya Hussein",,LBN,1,1,2.0,2.00,0,1640,16.7
+223,"Takkoush Abdallah",,LBN,1,1,2.0,2.00,0,1639,28.6
+224,"Al Khoury Yorgo",,LBN,1,1,2.0,2.00,1440,1729,28.6
+225,"Mrad Mario",,LBN,1,1,2.0,2.00,0,1512,33.3
+226,"Atayan Aren",,LBN,1,1,2.0,2.00,0,1696,16.7
+227,"Jari Jad",,LBN,1,1,2.0,2.00,0,1548,33.3
+228,"Ghrayeb Zayn",,LBN,1,1,2.0,2.00,0,1500,33.3
+229,"Nasser Ali",,LBN,1,1,2.0,2.00,1436,1718,28.6
+230,"Harajli Haidar",,LBN,2,2,2.0,1.00,0,1569,28.6
+231,"Salam Reina",,LBN,2,2,2.0,1.00,0,1570,0.0
+232,"Joumaa Amir",,LBN,2,2,2.0,1.00,0,1537,7.7
+233,"Abdallah Jennifer",,LBN,1,1,1.5,1.50,1493,1668,30.0
+234,"Itani Ahmad",,LBN,1,1,1.5,1.50,0,1617,21.4
+235,"Tohme Johnny",,LBN,1,1,1.5,1.50,1456,1716,21.4
+236,"Nasr Jason",,LBN,1,1,1.5,1.50,1456,1620,21.4
+237,"Khoury Zahi",,LBN,1,1,1.5,1.50,0,1520,21.4
 238,"Makkouk Tarek",,LBN,1,1,1.0,1.00,0,1568,14.3
-239,"Diab Dia Hassan",,LBN,2,2,1.0,0.50,0,1595,0.0
-240,"Jeradeh Lyn",,LBN,2,2,1.0,0.50,0,1540,0.0
-241,"Mallah Amir",,LBN,1,1,0.5,0.50,0,1559,10.0
-242,"Fakhoury Tarek",,LBN,1,1,0.0,0.00,1689,0,
-243,"Khoury Chakib",,LBN,1,1,0.0,0.00,0,1543,0.0
-244,"Moghabghab Jad",,LBN,1,1,0.0,0.00,0,1479,0.0
-245,"Al Mousawi Ali",,LBN,1,1,0.0,0.00,1664,0,
-246,"Taha Khaled",,LBN,1,1,0.0,0.00,0,1503,0.0
-247,"AbdelSamad Loren",,LBN,1,1,0.0,0.00,0,1639,0.0
+239,"Chamoun John",,LBN,1,1,1.0,1.00,0,1539,0.0
+240,"Fayad Selim",,LBN,1,1,1.0,1.00,0,1590,0.0
+241,"Abi Aad Marc",,LBN,1,1,1.0,1.00,0,1657,14.3
+242,"Rahbani Mathew",,LBN,1,1,1.0,1.00,0,1477,14.3
+243,"Eid Joe",,LBN,1,1,1.0,1.00,0,1625,14.3
+244,"Souaid Elie",,LBN,1,1,1.0,1.00,1470,1725,0.0
+245,"Taha Saria",,LBN,1,1,1.0,1.00,0,1535,0.0
+246,"Bsaibess Brian",,LBN,1,1,1.0,1.00,0,1578,14.3
+247,"Diab Dia Hassan",,LBN,2,2,1.0,0.50,0,1595,0.0
+248,"Jeradeh Lyn",,LBN,2,2,1.0,0.50,0,1540,0.0
+249,"Mallah Amir",,LBN,1,1,0.5,0.50,0,1559,10.0
+250,"Fakhoury Tarek",,LBN,1,1,0.0,0.00,1689,0,
+251,"Khoury Chakib",,LBN,1,1,0.0,0.00,0,1543,0.0
+252,"Moghabghab Jad",,LBN,1,1,0.0,0.00,0,1479,0.0
+253,"Al Mousawi Ali",,LBN,1,1,0.0,0.00,1664,0,
+254,"Taha Khaled",,LBN,1,1,0.0,0.00,0,1503,0.0
+255,"AbdelSamad Loren",,LBN,1,1,0.0,0.00,0,1639,0.0

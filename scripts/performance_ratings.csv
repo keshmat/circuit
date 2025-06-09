@@ -1,44 +1,45 @@
 Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %,Expected Score %,Difference
 "Eid Fadi",IM,LBN,2312,2173,14,10.5,75.0,84.8,-9.8
 "Arkadan Adib",CM,LBN,2267,2283,42,37.5,89.3,83.8,5.5
-"Khoder Akram",FM,LBN,2201,2196,41,34.5,84.1,81.9,2.3
+"Khoder Akram",FM,LBN,2207,2188,48,40.5,84.4,82.8,1.6
 "Boulos Carlos",CM,LBN,2187,1914,7,4.0,57.1,83.3,-26.1
-"Adeimi Michel",,LBN,2136,2152,42,32.5,77.4,74.7,2.7
-"Assaad Joe",CM,LBN,2115,2210,48,40.0,83.3,74.3,9.0
+"Adeimi Michel",,LBN,2138,2128,46,35.0,76.1,75.7,0.4
+"Assaad Joe",CM,LBN,2127,2190,55,45.0,81.8,75.7,6.1
 "Khairallah Faisal",FM,LBN,2069,2084,7,5.0,71.4,71.0,0.5
-"Najjar Ahmad",FM,LBN,2045,1941,41,28.0,68.3,78.8,-10.5
+"Najjar Ahmad",FM,LBN,2043,1984,48,34.0,70.8,76.9,-6.1
 "Kassis Antoine",FM,LBN,2004,2038,35,25.0,71.4,69.7,1.8
+"Kaloust Giorgio",,LBN,1995,2107,48,37.0,77.1,67.0,10.1
 "Sursock Sameer",FM,LBN,1992,2309,7,6.0,85.7,53.2,32.5
-"Kaloust Giorgio",,LBN,1987,2079,41,31.0,75.6,67.3,8.3
 "El Khoury Brayan",,LBN,1980,2006,6,4.0,66.7,65.7,1.0
 "Van Der Knijff Kees",,NED,1970,1808,14,8.0,57.1,73.8,-16.6
 "El Mahmoud Abdulaziz",CM,LBN,1966,1759,6,2.5,41.7,63.2,-21.5
-"Kassar Bashar",,LBN,1937,2103,41,31.0,75.6,59.9,15.8
+"Kassar Bashar",,LBN,1944,2060,48,34.5,71.9,61.6,10.3
 "Shihab Khaled",,LBN,1935,1851,7,4.0,57.1,68.2,-11.0
-"Fawaz Mohamad",,LBN,1931,2016,19,14.0,73.7,66.4,7.3
+"Fawaz Mohamad",,LBN,1934,2028,26,19.5,75.0,67.4,7.6
 "Tarabay Hady",,LBN,1907,1926,12,8.5,70.8,72.6,-1.7
 "Hanna Elie",,LBN,1887,1824,7,4.0,57.1,68.0,-10.9
-"Fawaz Nadia",WCM,LBN,1870,1921,44,27.5,62.5,59.4,3.1
+"Hazimeh Ahmad Ali",,LBN,1874,1953,46,32.5,70.7,64.9,5.8
+"Fawaz Nadia",WCM,LBN,1874,1937,51,32.5,63.7,59.2,4.5
+"Moughames Ronald",,LBN,1873,1917,41,28.0,68.3,66.2,2.1
 "Moudallal Tarek",,LBN,1867,1907,7,5.0,71.4,71.2,0.2
-"Hazimeh Ahmad Ali",,LBN,1866,1981,39,28.5,73.1,63.7,9.4
-"Moughames Ronald",,LBN,1861,1940,34,24.0,70.6,64.8,5.8
-"Sharbel Marwan",,LBN,1856,1807,12,6.5,54.2,62.1,-8.0
-"Saadeddine Adam",,LBN,1852,1914,39,26.0,66.7,62.6,4.1
+"Saadeddine Adam",,LBN,1865,1937,46,30.5,66.3,60.8,5.5
 "Ferzli Michael",,LBN,1849,1952,20,14.5,72.5,65.7,6.8
-"Karam Mark",,LBN,1847,1815,19,12.0,63.2,69.2,-6.0
 "Farhat Jawad",,LBN,1843,2008,5,4.0,80.0,67.0,13.0
+"Karam Mark",,LBN,1842,1877,25,16.5,66.0,64.7,1.3
 "Al Zarif Hassan",,LBN,1841,1856,7,4.0,57.1,16.7,40.5
+"Sharbel Marwan",,LBN,1840,1807,12,6.5,54.2,62.1,-8.0
+"Slim Nadim",,LBN,1831,1968,17,11.0,64.7,50.5,14.2
+"Nasser Hadi",,LBN,1830,1893,49,32.0,65.3,61.5,3.8
 "Haidar Wassim",,LBN,1822,2031,6,5.0,83.3,66.5,16.8
-"Nasser Hadi",,LBN,1822,1878,43,28.0,65.1,62.3,2.8
 "Habash Mohamad",,LBN,1822,1991,11,7.0,63.6,47.3,16.4
 "Saad Tarek",,LBN,1818,1736,6,3.0,50.0,59.8,-9.8
 "Ousama Khaled Lakki",,PLE,1816,1761,7,4.0,57.1,66.4,-9.2
-"Slim Nadim",,LBN,1816,2022,12,9.0,75.0,54.4,20.6
 "Wehbi Issa",,LBN,1814,1707,7,4.0,57.1,71.4,-14.3
+"Ward Serge",,LBN,1812,1857,6,3.0,50.0,44.3,5.7
 "Sarhan Wahid",,SYR,1809,1785,12,7.5,62.5,67.0,-4.5
+"Attieh Skye",WCM,LBN,1806,1823,41,23.5,57.3,57.9,-0.6
 "Rammal Ayman",,LBN,1806,1426,6,2.0,33.3,76.1,-42.8
-"Attieh Skye",WCM,LBN,1804,1832,35,20.0,57.1,56.3,0.9
-"Farra Marc Anwar",,LBN,1795,1776,13,7.0,53.8,38.7,15.2
+"Farra Marc Anwar",,LBN,1795,1797,19,10.5,55.3,43.9,11.4
 "Al Asmar Remy",WCM,LBN,1790,1812,35,21.0,60.0,59.4,0.6
 "Iskandarian Edward",,LBN,1789,1826,18,10.5,58.3,55.6,2.7
 "Issa Ahmad",,LBN,1776,1844,7,4.5,64.3,60.5,3.8
@@ -52,7 +53,6 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "El-Bittar John Fadi",,USA,1725,1745,21,9.5,45.2,44.2,1.0
 "Moarbes Charbel",,LBN,1723,1690,6,3.0,50.0,58.5,-8.5
 "Hamad Ismael",,LBN,1721,1685,6,3.5,58.3,65.7,-7.4
-"Abou Taam Fatima",,LBN,1717,1744,13,7.0,53.8,54.3,-0.4
 "Abi Azar Jean",,LBN,1717,1629,6,3.0,50.0,62.6,-12.6
 "Al Hayek Ahmad",,LBN,1716,1724,7,4.0,57.1,60.3,-3.2
 "Chaaban Mazen",,LBN,1714,1299,3,0.0,0.0,46.4,-46.4
@@ -60,18 +60,19 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "Attieh Kate",,LBN,1706,1645,29,12.0,41.4,49.8,-8.4
 "Ramadan Wissam",,LBN,1702,1551,11,4.5,40.9,58.2,-17.3
 "Mokdad Mohamad",,LBN,1701,1538,6,2.5,41.7,61.1,-19.4
+"Darwiche Mohamad",,LBN,1698,1807,23,14.5,63.0,55.2,7.8
 "Mounayar Maroun",,LBN,1693,1654,19,9.5,50.0,55.7,-5.7
-"Salem Ralph",,LBN,1692,1634,19,9.0,47.4,55.8,-8.4
+"Abou Taam Fatima",,LBN,1692,1752,18,9.0,50.0,47.0,3.0
 "Qudsi Mohammad",,LBN,1689,1868,18,11.5,63.9,47.5,16.4
-"Darwiche Mohamad",,LBN,1689,1760,17,10.5,61.8,58.0,3.8
 "Abu Alfa Imad Al Deen",,LBN,1684,1697,6,3.0,50.0,50.0,-0.0
-"Khoury Rabih",,LBN,1682,1672,16,8.0,50.0,52.2,-2.2
+"Salem Ralph",,LBN,1683,1642,25,11.5,46.0,51.5,-5.5
+"Khoury Rabih",,LBN,1679,1684,21,10.0,47.6,47.3,0.3
 "Salman Jamal",,LBN,1677,1628,20,9.0,45.0,51.8,-6.8
+"Akl Jad Eli",ACM,LBN,1675,1868,41,23.5,57.3,36.9,20.4
+"Kazandjian Aram",AFM,LBN,1675,1709,37,18.0,48.6,45.4,3.3
 "Moghnieh Hussein",AIM,LBN,1673,1861,6,3.0,50.0,31.2,18.8
-"Kazandjian Aram",AFM,LBN,1670,1709,37,18.0,48.6,45.4,3.3
 "Arkadan Adam",,LBN,1668,1643,6,3.0,50.0,53.8,-3.8
 "Nasser Youssef",,LBN,1665,1670,5,2.0,40.0,36.2,3.8
-"Akl Jad Eli",ACM,LBN,1657,1865,35,19.5,55.7,33.1,22.6
 "Wadih Michel",,LBN,1656,1784,21,10.5,50.0,36.8,13.2
 "Kalfayan Garo",,LBN,1654,1703,4,2.0,50.0,43.8,6.2
 "Younes Mohamad Hussein",,LBN,1654,1691,10,5.0,50.0,45.2,4.8
@@ -80,74 +81,78 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "Baydoun Rayan",,LBN,1649,1758,6,4.0,66.7,57.4,9.3
 "El Khatib Ali .M",,LBN,1647,1597,3,1.0,33.3,35.9,-2.6
 "Khawli Nicolas",,LBN,1646,1426,5,1.5,30.0,59.9,-29.9
-"Garabet Charbel",ACM,LBN,1643,1632,36,14.5,40.3,42.7,-2.4
 "Girard Sebastien",AIM,LBN,1643,1754,27,14.0,51.9,41.2,10.7
+"Bchara Charbel",,LBN,1643,1658,30,13.5,45.0,44.9,0.1
 "Jaber Mohammad Khalil",,LBN,1640,1296,5,0.5,10.0,43.4,-33.4
 "Saad Tarek Moustapha",,LBN,1636,1820,15,8.5,56.7,37.5,19.1
+"Garabet Charbel",ACM,LBN,1635,1615,42,16.5,39.3,42.3,-3.0
 "El Khoury Antonio",,LBN,1635,1743,16,8.5,53.1,41.2,11.9
 "Wehbe Roy",,LBN,1635,1684,6,3.0,50.0,44.6,5.4
 "Zrour Hanna",,LBN,1634,1616,18,7.0,38.9,40.8,-1.9
-"Bchara Charbel",,LBN,1632,1592,24,10.0,41.7,47.0,-5.3
 "Flayhan Zouhair",,LBN,1631,1383,3,0.0,0.0,19.6,-19.6
-"Salman Fatima",,LBN,1631,1632,20,7.5,37.5,37.5,0.0
 "Bedrosian Danielle",,LBN,1630,1395,5,1.0,20.0,41.8,-21.8
+"Hamadeh Sally",,LBN,1626,1594,39,13.5,34.6,37.4,-2.7
 "Fayad Steven",,LBN,1625,1448,9,2.5,27.8,45.9,-18.1
 "Totonji Kamal",,LBN,1625,1592,16,7.0,43.8,50.6,-6.8
-"Hamadeh Sally",,LBN,1624,1599,35,12.5,35.7,38.1,-2.3
 "Chami Amir",,LBN,1623,1389,6,1.5,25.0,51.8,-26.8
 "El Khoury Alexander",,LBN,1622,1529,23,6.5,28.3,34.5,-6.3
-"Salameh Celio Wissam",,LBN,1620,1562,22,8.5,38.6,38.5,0.1
+"Salameh Celio Wissam",,LBN,1621,1614,28,11.5,41.1,37.7,3.4
+"Salman Fatima",,LBN,1618,1616,24,8.5,35.4,35.4,-0.0
 "Samman Karim",,LBN,1617,1567,16,6.0,37.5,32.4,5.1
 "Temraz Samer",,LBN,1616,1631,10,5.0,50.0,48.4,1.6
 "El Khoury Elias",,LBN,1615,1598,20,8.0,40.0,42.2,-2.2
 "Tawil Charbel.",,SYR,1613,1580,10,5.0,50.0,54.4,-4.4
 "El Abd Qassim",,PLE,1606,1599,12,5.0,41.7,40.7,1.0
 "Rahhal Serje",,LBN,1605,1627,5,2.5,50.0,47.2,2.8
-"Harakeh Jihad",,LBN,1601,1432,9,1.0,11.1,28.2,-17.1
 "Sioufi Oussama",,LBN,1599,1509,17,5.0,29.4,36.3,-6.8
 "Eid Christopher",,LBN,1598,1252,13,1.5,11.5,46.5,-35.0
 "Ghanem Haitham Yehia",,LBN,1598,1623,6,2.0,33.3,32.4,0.9
+"Harakeh Jihad",,LBN,1597,1381,14,1.5,10.7,34.0,-23.3
 "Hanna Kevin Claude",,LBN,1597,1479,2,0.0,0.0,19.3,-19.3
 "Haddad Peter",,LBN,1594,1733,3,1.0,33.3,24.0,9.4
 "Altal Mohammad Fares.",,SYR,1592,1220,3,0.0,0.0,38.9,-38.9
 "Fares Ali",,LBN,1588,1591,21,7.0,33.3,29.0,4.3
+"Ali Khan Amani",ACM,LBN,1588,1346,4,0.5,12.5,37.8,-25.3
 "Housseiny Ali",,LBN,1587,1642,5,2.0,40.0,29.8,10.2
-"Tenbelian Haig",,LBN,1584,1415,12,3.0,25.0,43.9,-18.9
 "Ghorabi Adam",,LBN,1582,1365,5,1.0,20.0,40.5,-20.5
 "Bsat Kinana",,LBN,1579,1720,24,11.5,47.9,31.7,16.3
+"Eid Floron",,LBN,1578,1323,4,0.0,0.0,22.5,-22.5
 "Hachem Marc",,LBN,1573,1463,11,3.0,27.3,30.2,-2.9
+"Abi Chaaya Rolanthony",,LBN,1570,1314,12,1.5,12.5,28.9,-16.4
 "Darweeche Hussein",,LBN,1569,1735,11,5.5,50.0,29.7,20.3
 "Shehab Mohammad",,LBN,1566,1579,7,2.0,28.6,28.6,-0.0
 "Nasr Yamen",,LBN,1566,1557,19,8.0,42.1,35.5,6.6
+"Tenbelian Haig",,LBN,1566,1453,18,5.0,27.8,38.7,-10.9
 "Atayan Michel",,LBN,1565,1592,30,10.0,33.3,29.3,4.0
 "Hadad Peter",,LBN,1564,1544,30,9.0,30.0,26.9,3.1
 "Talayeh Rawad",,LBN,1563,1359,2,0.0,0.0,21.2,-21.2
 "Kassar Paul",,LBN,1557,1396,17,3.5,20.6,34.8,-14.2
-"Kassar Pierre",,LBN,1546,1350,13,2.0,15.4,32.3,-16.9
-"Zeitjian Sarkis",,LBN,1546,1590,28,9.0,32.1,23.5,8.7
+"Kassar Pierre",,LBN,1542,1309,17,2.0,11.8,32.6,-20.8
 "Haddad Charbel-Anthony",,LBN,1541,1262,3,0.0,0.0,26.0,-26.0
+"Zeitjian Sarkis",,LBN,1538,1557,32,9.5,29.7,23.7,6.0
 "Hassabo Christopher",,LBN,1537,1538,15,4.0,26.7,25.5,1.2
 "Jarrah Taha",,LBN,1537,1546,2,1.0,50.0,48.9,1.1
 "Al Dahab Khaled",,LBN,1531,1392,5,1.0,20.0,30.2,-10.2
 "Saab Mario",,LBN,1531,1350,4,0.5,12.5,29.0,-16.5
 "Hijazi Kassem Rabih",,LBN,1530,1628,2,1.0,50.0,40.6,9.4
+"Masri Mohamad",,LBN,1529,1569,34,13.0,38.2,32.7,5.6
 "Al Jurdi Ribal",,LBN,1519,1642,10,4.0,40.0,23.3,16.7
 "Bchara Eugenie",,LBN,1518,1722,6,3.0,50.0,24.4,25.6
-"Masri Mohamad",,LBN,1514,1561,28,10.5,37.5,29.7,7.8
 "Aawar Amid",,LBN,1514,1361,17,2.5,14.7,26.3,-11.6
 "Sharif Nour",,LBN,1513,1295,7,0.5,7.1,26.5,-19.4
 "Dirani Hussien",,LBN,1513,1248,3,0.0,0.0,21.4,-21.4
 "Chaheen Raed",,LBN,1506,1192,3,0.0,0.0,26.7,-26.7
+"Abou Taam Mahmoud",,LBN,1502,1546,4,1.0,25.0,28.1,-3.1
 "Saber Samer",,LBN,1499,1222,4,0.0,0.0,22.4,-22.4
 "Abdallah Jennifer",,LBN,1493,1468,5,1.5,30.0,28.7,1.3
 "Baddour Daniel",,LBN,1491,1217,3,0.0,0.0,21.6,-21.6
-"Kobeissey Jessica",,LBN,1490,1451,14,3.5,25.0,23.3,1.7
 "Seropian Zareh",,LBN,1490,1435,4,1.0,25.0,25.4,-0.4
 "Hreiche Hasan",,LBN,1488,1219,4,0.0,0.0,22.2,-22.2
+"Kobeissey Jessica",,LBN,1482,1508,21,7.0,33.3,25.3,8.0
 "Souaid Elie",,LBN,1470,1225,3,0.0,0.0,20.1,-20.1
 "El Khoury Jean Pierre",,LBN,1466,1491,18,6.0,33.3,25.8,7.6
 "Seifeddine Ghazi",,LBN,1466,1427,22,5.0,22.7,22.0,0.7
-"Dagher Habib",ACM,LBN,1462,1418,31,6.0,19.4,20.1,-0.8
+"Dagher Habib",ACM,LBN,1464,1391,35,6.0,17.1,20.8,-3.6
 "Bchara Anthony",,LBN,1462,1518,21,6.5,31.0,21.2,9.7
 "Tohme Johnny",,LBN,1456,1216,3,0.0,0.0,18.9,-18.9
 "Nasr Jason",,LBN,1456,1120,2,0.0,0.0,33.1,-33.1
@@ -155,28 +160,44 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "Saleh Jihad",,LBN,1445,1121,8,0.0,0.0,30.1,-30.1
 "Saliba Marc Samer",,LBN,1441,1181,4,0.0,0.0,20.4,-20.4
 "Al Khoury Yorgo",,LBN,1440,1229,2,0.0,0.0,16.9,-16.9
+"Nasser Ali",,LBN,1436,1218,2,0.0,0.0,18.1,-18.1
 "Hammoud Amro",,LBN,1435,1127,4,0.0,0.0,25.4,-25.4
 "Francis Myriam",,LBN,1427,1357,5,1.0,20.0,25.2,-5.2
 "Karout Al Horr",,LBN,1426,1469,3,1.0,33.3,23.5,9.8
 "Harika Rodolph",,LBN,1425,1229,3,0.0,0.0,18.4,-18.4
-"Masri Ali Rida",,LBN,1417,1392,35,10.0,28.6,35.1,-6.5
+"Masri Ali Rida",,LBN,1417,1382,40,11.0,27.5,35.2,-7.7
 "Jeradeh Rym",,LBN,1411,1295,20,4.0,20.0,35.0,-15.0
 "Atayan Carlo",,LBN,1409,1379,25,5.5,22.0,27.5,-5.5
 "El Jawich Qusay",,LBN,1401,1262,10,1.0,10.0,19.7,-9.7
+"Al Amine Mohsen",,LBN,0,1435,10,2.5,25.0,32.7,-7.7
+"El Amine Abdallah",,LBN,0,1377,5,1.0,20.0,35.0,-15.0
+"Eido Nawar",,LBN,0,1500,6,2.0,33.3,32.5,0.8
+"Saab Karim",,LBN,0,1186,2,0.0,0.0,38.1,-38.1
+"Younis Youssef El Sedeek",,LBN,0,1253,6,0.0,0.0,32.0,-32.0
+"Samaha Sebou",,LBN,0,1142,4,0.0,0.0,44.3,-44.3
+"Abou Jaoude Karim",,LBN,0,1271,4,0.0,0.0,28.8,-28.8
+"Ghabach Maria",,LBN,0,1188,9,0.0,0.0,38.2,-38.2
+"Shoucair Alexander",,LBN,0,1169,8,0.0,0.0,40.5,-40.5
+"Akiki Charbel",,LBN,0,1334,17,1.5,8.8,29.5,-20.7
+"Kassaa Karim",,LBN,0,1309,11,2.0,18.2,41.5,-23.3
+"Kayem Assi",,LBN,0,1226,30,2.0,6.7,41.0,-34.4
+"Harajli Haidar",,LBN,0,1436,3,1.0,33.3,40.8,-7.4
+"Choukri Marianne",,LBN,0,1217,9,0.0,0.0,36.0,-36.0
+"El Kassa Omar",,LBN,0,1332,12,1.5,12.5,33.8,-21.3
+"Makkouk Tarek",,LBN,0,1168,3,0.0,0.0,40.6,-40.6
+"Salam Reina",,LBN,0,1170,2,0.0,0.0,40.2,-40.2
+"Mallah Amir",,LBN,0,1159,2,0.0,0.0,42.1,-42.1
 "AlAhmad Ahmad Adnan",,LBN,0,1595,6,3.0,50.0,37.0,13.0
 "El Jawich Louay",,LBN,0,1421,7,2.0,28.6,37.9,-9.3
-"Abi Chaaya Rolanthony",,LBN,0,1370,9,1.5,16.7,32.5,-15.8
 "Abou Dargham Johnny",,LBN,0,1309,8,1.0,12.5,35.6,-23.1
-"Younes Youssef",,LBN,0,1272,19,2.5,13.2,41.3,-28.2
+"Younes Youssef",,LBN,0,1292,24,3.5,14.6,40.3,-25.8
 "Eid Oliver",,LBN,0,1281,16,2.5,15.6,42.3,-26.7
 "Abdalah Jad",,LBN,0,1462,11,3.0,27.3,32.3,-5.0
-"Akiki Charbel",,LBN,0,1334,17,1.5,8.8,29.5,-20.7
 "Hamoud Ali",,LBN,0,1150,2,0.0,0.0,43.1,-43.1
 "Rammal Karim",,LBN,0,1125,4,0.0,0.0,46.5,-46.5
 "Abi Aad Michel",,LBN,0,1211,8,0.0,0.0,35.1,-35.1
 "Hamade Rawad",,LBN,0,1131,8,0.0,0.0,45.8,-45.8
 "Bechaalany Anthony",,LBN,0,1479,3,1.0,33.3,34.6,-1.3
-"Kayem Assi",,LBN,0,1226,30,2.0,6.7,41.0,-34.4
 "Rammal Celena",,LBN,0,1046,1,0.0,0.0,57.7,-57.7
 "Haidar Riad",,LBN,0,1132,3,0.0,0.0,45.5,-45.5
 "Fayad Michel",,LBN,0,1232,8,1.0,12.5,45.7,-33.2
@@ -192,28 +213,23 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "Mahdi Yousef Mohamad",,LBN,0,1165,4,0.0,0.0,41.1,-41.1
 "Mardikian Antranik Maria",,LBN,0,1115,4,0.0,0.0,48.2,-48.2
 "Rahal Ali Hassan",,LBN,0,1230,10,1.0,10.0,43.1,-33.1
-"Hamze Adam",,LBN,0,1169,4,0.0,0.0,40.7,-40.7
+"Hamze Adam",,LBN,0,1331,9,1.5,16.7,38.0,-21.3
 "Eid Joe",,LBN,0,1385,5,1.0,20.0,33.5,-13.5
 "Jeradeh Lyn",,LBN,0,1140,7,0.0,0.0,44.7,-44.7
 "Moghabghab Jad",,LBN,0,1079,2,0.0,0.0,53.0,-53.0
 "Christ Aramali",,LBN,0,1279,3,0.0,0.0,27.1,-27.1
-"Kassaa Karim",,LBN,0,1309,11,2.0,18.2,41.5,-23.3
 "Daher Stephan",,LBN,0,1352,3,0.0,0.0,20.0,-20.0
 "Barnaba Kay",,LBN,0,1308,4,0.0,0.0,23.9,-23.9
 "Saadeddine Lea",,LBN,0,1341,6,1.0,16.7,36.3,-19.7
 "Hammoud Mohammad",,LBN,0,1208,8,0.0,0.0,35.4,-35.4
-"El Kassa Omar",,LBN,0,1332,12,1.5,12.5,33.8,-21.3
 "Ghanem Georgio",,LBN,0,1222,5,0.0,0.0,33.4,-33.4
 "Amin Micheal",,LBN,0,1339,5,0.0,0.0,21.7,-21.7
 "Saadeddine Lana",,LBN,0,1210,2,0.0,0.0,35.4,-35.4
-"Shoucair Alexander",,LBN,0,1169,8,0.0,0.0,40.5,-40.5
-"Salam Reina",,LBN,0,1170,2,0.0,0.0,40.2,-40.2
 "Asaad Ali",,LBN,0,1580,7,3.0,42.9,32.9,9.9
 "Abou Hjeily Karim",,LBN,0,1468,4,1.0,25.0,27.8,-2.8
 "Al Harakeh Wassim",,LBN,0,1465,6,2.0,33.3,36.7,-3.4
 "Al Bitar Mohammad Hachem Mahmoud",,LBN,0,1194,4,0.0,0.0,37.4,-37.4
-"Ghabach Maria",,LBN,0,1188,9,0.0,0.0,38.2,-38.2
-"Joumaa Amir",,LBN,0,1146,3,0.0,0.0,43.7,-43.7
+"Joumaa Amir",,LBN,0,1137,7,0.0,0.0,45.0,-45.0
 "Abou Zeid Joseph",,LBN,0,1253,4,0.0,0.0,30.5,-30.5
 "Khayat Ryan",,LBN,0,1402,6,2.0,33.3,45.2,-11.9
 "Chaaya Ribal",,LBN,0,1200,4,0.0,0.0,36.4,-36.4
@@ -229,17 +245,9 @@ Name,Title,Federation,Rating,Performance Rating,Games Played,Total Score,Score %
 "Taha Khaled",,LBN,0,1103,3,0.0,0.0,49.7,-49.7
 "Al Sheikh Younes",,LBN,0,1686,6,2.0,33.3,16.4,17.0
 "Chabab Sarah",,LBN,0,1298,4,0.5,12.5,36.7,-24.2
-"Younis Youssef El Sedeek",,LBN,0,1253,6,0.0,0.0,32.0,-32.0
 "Atayan Aren",,LBN,0,1296,2,0.0,0.0,26.2,-26.2
 "Bsaibess Brian",,LBN,0,1378,4,1.0,25.0,39.7,-14.7
 "AbdelSamad Loren",,LBN,0,1239,3,0.0,0.0,34.8,-34.8
-"Al Amine Mohsen",,LBN,0,1393,5,1.0,20.0,33.1,-13.1
-"El Amine Abdallah",,LBN,0,1377,5,1.0,20.0,35.0,-15.0
-"Eido Nawar",,LBN,0,1500,6,2.0,33.3,32.5,0.8
-"Saab Karim",,LBN,0,1186,2,0.0,0.0,38.1,-38.1
-"Samaha Sebou",,LBN,0,1142,4,0.0,0.0,44.3,-44.3
-"Abou Jaoude Karim",,LBN,0,1271,4,0.0,0.0,28.8,-28.8
-"Harajli Haidar",,LBN,0,1436,3,1.0,33.3,40.8,-7.4
-"Choukri Marianne",,LBN,0,1244,3,0.0,0.0,32.4,-32.4
-"Makkouk Tarek",,LBN,0,1168,3,0.0,0.0,40.6,-40.6
-"Mallah Amir",,LBN,0,1159,2,0.0,0.0,42.1,-42.1
+"El Tayah Antoine",,LBN,0,1425,6,1.5,25.0,33.7,-8.7
+"Jari Jad",,LBN,0,1414,6,2.0,33.3,43.5,-10.2
+"Ghrayeb Zayn",,LBN,0,1260,5,1.0,20.0,49.9,-29.9
